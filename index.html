@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Leo Club of St. Joseph's College, Anuradhapura — leadership, service and community projects. Follow our events, team and gallery." />
+    <title>Leo Club — St. Joseph's College, Anuradhapura</title>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root{
+            --maroon:#800000;
+            --gold:#D4AF37;
+            --navy:#1e293b;
+            --white:#ffffff;
+            --light-bg:#f9f9f9;
+            --container-max:1200px;
+            --nav-height:70px;
+            --radius:10px;
+            --ease: 0.28s cubic-bezier(.4,0,.2,1);
+        }
+
+        /* Base */
+        *{box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{
+            margin:0;
+            font-family:'Poppins',sans-serif;
+            background:var(--white);
+            color: #fff;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+        }
+        .container{
+            max-width:var(--container-max);
+            margin:0 auto;
+            padding:0 20px;
+        }
+        section{padding:80px 0}
+        h1,h2,h3,h4{font-weight:700;margin:0 0 16px 0}
+        p{margin:0 0 12px 0;line-height:1.5;color:rgba(255,255,255,0.95)}
+
+        /* Section title */
+        .section-title{text-align:center; margin-bottom:40px; position:relative; color:var(--white)}
+        .section-title:after{
+            content:'';
+            position:absolute;
+            bottom:-12px;
+            left:50%;
+            transform:translateX(-50%);
+            width:80px;height:3px;
+            background:linear-gradient(90deg,var(--maroon),var(--gold));
+        }
+
+        /* NAV */
+        nav{
+            position:fixed;left:0;top:0;width:100%;
+            z-index:1200;
+            transition:all 200ms ease;
+            height:var(--nav-height);
+            display:flex;align-items:center;
+            background:transparent;
+            padding:10px 0;
+        }
+        nav .nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%}
+        .logo{display:flex;align-items:center;gap:12px}
+        .logo-icon i{color:var(--maroon);font-size:28px}
+        .logo-text{font-weight:700;color:#fff;font-size:14px}
+
+        /* Scrolled / sticky effect */
+        nav.scrolled{
+            backdrop-filter: blur(8px);
+            background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+            box-shadow:0 6px 24px rgba(0,0,0,0.12);
+            padding:6px 0;
+        }
+        nav.scrolled .logo-text{color:#fff}
+        /* Nav Links */
+        .nav-links{display:flex;gap:28px;list-style:none;margin:0;padding:0;align-items:center}
+        .nav-links a{
+            text-decoration:none;color:#fff;font-weight:500;padding:8px 6px;border-radius:6px;transition:color var(--ease), background var(--ease);
+        }
+        .nav-links a:focus{outline:2px dashed rgba(255,255,255,0.2); outline-offset:3px}
+        .nav-links a:hover{color:var(--maroon); background:rgba(255,255,255,0.02)}
+
+        /* Mobile menu toggle */
+        .menu-toggle{
+            display:none;border:none;background:transparent;cursor:pointer;width:44px;height:44px;border-radius:8px;
+            align-items:center;justify-content:center;
+        }
+        .menu-toggle .bar{display:block;width:22px;height:2px;background:var(--maroon);margin:4px 0;transition:transform 180ms ease, opacity 180ms ease}
+        .menu-toggle[aria-expanded="true"] .bar:nth-child(1){transform:translateY(6px) rotate(45deg)}
+        .menu-toggle[aria-expanded="true"] .bar:nth-child(2){opacity:0}
+        .menu-toggle[aria-expanded="true"] .bar:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+        /* HERO */
+        .hero{
+            height:100vh;min-height:560px;
+            display:flex;align-items:center;justify-content:center;text-align:center;
+            position:relative;
+            color:var(--white);
+            overflow:hidden;
+        }
+        .hero::before{
+            content:'';
+            position:absolute;inset:0;
+            background:linear-gradient(180deg, rgba(30,41,59,0.55), rgba(128,0,0,0.65));
+            pointer-events:none;
+        }
+        .hero-bg{
+            position:absolute;inset:0;background-size:cover;background-position:center center;z-index:-1;
+            filter:contrast(0.95) saturate(0.95);
+        }
+        .hero-content{max-width:900px;padding:20px;z-index:2}
+        .hero-logo{
+            width:120px;height:120px;border-radius:50%;
+            display:flex;align-items:center;justify-content:center;margin:0 auto 22px;
+            background:rgba(255,255,255,0.08);border:2px solid var(--gold);backdrop-filter: blur(4px)
+        }
+        .hero-logo i{font-size:44px;color:var(--gold)}
+        .hero h1{font-size:3.2rem;margin-bottom:12px;text-shadow:2px 2px 8px rgba(0,0,0,0.4)}
+        .hero p{font-size:1.15rem;font-weight:300;opacity:0.95}
+        .hero-btn{
+            display:inline-block;margin-top:20px;padding:12px 28px;border-radius:28px;background:var(--gold);color:#fff;text-decoration:none;font-weight:700;border:2px solid var(--gold);transition:all var(--ease)
+        }
+        .hero-btn:hover{background:transparent;color:var(--gold)}
+
+        /* SECTIONS - background color */
+        .about,.projects,.gallery,.team,.contact{background:var(--navy);color:var(--white)}
+
+        /* About layout */
+        .about-content{display:flex;gap:30px;align-items:center;flex-wrap:wrap}
+        .about-text{flex:1;min-width:280px;font-size:1rem;padding-right:20px;transform:translateX(-10px);opacity:0;transition:all 600ms var(--ease)}
+        .about-logo{flex:1;min-width:280px;text-align:center;opacity:0;transform:translateX(10px);transition:all 600ms var(--ease)}
+        .about-logo img{max-width:300px;height:auto;border-radius:12px}
+
+        .appear{opacity:1;transform:none}
+
+        /* Projects grid */
+        .project-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+        .project-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:var(--radius);overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,0.15);transition:transform 300ms var(--ease), box-shadow 300ms var(--ease);padding:0;opacity:0;transform:translateY(20px)}
+        .project-card.appear{opacity:1;transform:none}
+        .project-card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(0,0,0,0.22)}
+        .project-img{height:200px;background:#fff;display:flex;align-items:center;justify-content:center}
+        .project-img img{width:100%;height:100%;object-fit:cover;display:block}
+        .project-content{padding:12px 14px;color:var(--white)}
+        .project-content p{margin:6px 0 0 0;color:rgba(255,255,255,0.9)}
+
+        /* Gallery */
+        .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+        .gallery-item{position:relative;border-radius:8px;overflow:hidden;min-height:180px;background:var(--maroon);cursor:pointer}
+        .gallery-img{width:100%;height:100%;display:block;object-fit:cover;transition:transform 400ms var(--ease)}
+        .gallery-overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.45));display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 220ms var(--ease)}
+        .gallery-item:focus-within .gallery-overlay,
+        .gallery-item:hover .gallery-overlay{opacity:1}
+        .gallery-item:focus-within .gallery-img,
+        .gallery-item:hover .gallery-img{transform:scale(1.06)}
+        .gallery-overlay i{color:var(--white);font-size:1.6rem}
+
+        /* Team */
+        .team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:24px}
+        .team-member{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;overflow:hidden;box-shadow:0 6px 18px rgba(255,255,255,0.04);text-align:center;padding-bottom:12px;opacity:0;transform:translateY(20px);transition:all 480ms var(--ease)}
+        .team-member.appear{opacity:1;transform:none}
+        .member-img{height:250px;background:var(--navy);display:flex;align-items:center;justify-content:center}
+        .member-img img{width:100%;height:100%;object-fit:cover;display:block}
+        .member-content{padding:14px}
+        .member-content h3{color:var(--white);margin-bottom:6px}
+        .member-role{color:rgba(255,255,255,0.92);font-weight:500;margin-bottom:4px}
+
+        /* Contact */
+        .contact-content{display:flex;flex-direction:column;align-items:center;gap:26px}
+        .contact-info{max-width:720px;width:100%}
+        .contact-details{list-style:none;padding:0;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+        .contact-details li{display:flex;gap:12px;align-items:flex-start;justify-content:flex-start;background:rgba(255,255,255,0.02);padding:12px;border-radius:8px}
+        .contact-details i{flex:0 0 46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--maroon);color:var(--white);font-size:18px}
+        .contact-details a{color:var(--white);text-decoration:none}
+        .social-links{display:flex;gap:10px;justify-content:center;margin-top:10px}
+        .social-links a{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:8px;background:var(--maroon);color:var(--white);text-decoration:none;transition:transform 200ms var(--ease)}
+        .social-links a:hover{transform:translateY(-6px);background:var(--gold);color:#111}
+
+        /* Footer */
+        footer{background:var(--maroon);color:var(--white);padding:40px 0 24px}
+        .footer-content{display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between}
+        .footer-logo{min-width:220px}
+        .footer-links h4,.footer-social h4{color:var(--gold);margin-bottom:12px}
+        .footer-links a{color:var(--white);text-decoration:none}
+        .footer-bottom{text-align:center;padding-top:18px;border-top:1px solid rgba(255,255,255,0.06)}
+
+        /* Back to top */
+        .back-to-top{
+            position:fixed;right:18px;bottom:18px;width:48px;height:48px;border-radius:12px;background:var(--maroon);display:flex;align-items:center;justify-content:center;color:#fff;border:none;
+            box-shadow:0 10px 28px rgba(0,0,0,0.25);cursor:pointer;z-index:1400;transform:translateY(20px);opacity:0;transition:opacity 200ms var(--ease), transform 200ms var(--ease)
+        }
+        .back-to-top.visible{opacity:1;transform:translateY(0)}
+        .back-to-top:focus{outline:3px solid rgba(255,255,255,0.12)}
+
+        /* Responsive adjustments */
+        @media (max-width:992px){
+            .hero h1{font-size:2.4rem}
+            .about-text,.about-logo{padding-right:0}
+        }
+        @media (max-width:768px){
+            .menu-toggle{display:flex}
+            .nav-links{
+                position:fixed;top:var(--nav-height);left:-120%;width:100%;height:calc(100vh - var(--nav-height));background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));flex-direction:column;align-items:center;justify-content:center;gap:22px;transition:left 360ms var(--ease);padding:20px;z-index:1300
+            }
+            .nav-links.show{left:0}
+            .nav-links a{color:var(--white);font-size:18px}
+            .project-grid,.team-grid{grid-template-columns:1fr}
+            .gallery-grid{grid-template-columns:repeat(2,1fr)}
+        }
+        @media (max-width:400px){
+            .hero h1{font-size:1.8rem}
+            section{padding:60px 0}
+            .hero{min-height:520px}
+        }
+
+        /* Accessibility: reduce motion */
+        @media (prefers-reduced-motion:reduce){
+            *{transition:none!important;animation:none!important}
+        }
+
+        /* SOFT ANIMATIONS */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px);}
+            to { opacity: 1; transform: none;}
+        }
+        @keyframes fadeIn {
+            from { opacity: 0;}
+            to { opacity: 1;}
+        }
+        .fade-in-up {
+            opacity: 0;
+            animation: fadeInUp 1s cubic-bezier(.4,0,.2,1) forwards;
+        }
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1.2s cubic-bezier(.4,0,.2,1) forwards;
+        }
+
+        /* SOFTER LOOKS */
+        section, .project-card, .team-member, .about-logo img, .gallery-item, .contact-details li {
+            border-radius: 18px !important;
+        }
+        .project-card, .team-member, .contact-details li {
+            box-shadow: 0 8px 32px rgba(30,41,59,0.10), 0 1.5px 6px rgba(128,0,0,0.08);
+        }
+        .project-card:hover, .team-member:hover {
+            box-shadow: 0 18px 48px rgba(128,0,0,0.13), 0 2px 8px rgba(30,41,59,0.10);
+        }
+        .gallery-item {
+            transition: box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
+            box-shadow: 0 4px 18px rgba(128,0,0,0.10);
+        }
+        .gallery-item:hover {
+            box-shadow: 0 12px 32px rgba(212,175,55,0.13);
+            transform: translateY(-4px) scale(1.03);
+        }
+        .about-logo img {
+            box-shadow: 0 8px 32px rgba(212,175,55,0.10);
+        }
+        .hero-logo {
+            box-shadow: 0 6px 24px rgba(212,175,55,0.13);
+        }
+        .hero-btn {
+            box-shadow: 0 2px 12px rgba(212,175,55,0.10);
+        }
+        .hero-btn:focus {
+            outline: 2px solid var(--gold);
+        }
+
+        /* EMAIL WRAP FIX */
+        .email-box {
+            background: rgba(255,255,255,0.06);
+            padding: 6px 10px;
+            border-radius: 8px;
+            display: inline-block;
+            max-width: 100%;
+            overflow-x: auto;
+            word-break: break-all;
+            font-size: 0.98em;
+        }
+        .email-box a {
+            color: var(--gold);
+            text-decoration: underline;
+            word-break: break-all;
+        }
+
+        /* Footer social icons: ensure white color and preserve hover */
+        .footer-social a {
+            color: var(--white);
+            background: transparent;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: transform 200ms var(--ease), background 200ms var(--ease), color 200ms var(--ease);
+        }
+        .footer-social a i { color: inherit; } /* ensure icon uses link color */
+        .footer-social a:hover {
+            transform: translateY(-6px);
+            background: var(--gold);
+            color: #111;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav role="navigation" aria-label="Main Navigation">
+        <div class="container nav-inner">
+            <div class="logo" aria-hidden="false">
+                <div class="logo-icon" aria-hidden="true"><i class="fas fa-lion" aria-hidden="true"></i></div>
+                <div class="logo-text">Leo Club Of St. Joseph's College Anuradhapura</div>
+            </div>
+
+            <button class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <ul id="primary-navigation" class="nav-links" role="menubar" aria-label="Primary">
+                <li role="none"><a role="menuitem" href="#about">About</a></li>
+                <li role="none"><a role="menuitem" href="#projects">Projects</a></li>
+                <li role="none"><a role="menuitem" href="#gallery">Gallery</a></li>
+                <li role="none"><a role="menuitem" href="#team">Team</a></li>
+                <li role="none"><a role="menuitem" href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero-bg" style="background-image:url('assets/images/team1.jpg');" role="img" aria-label="Leo club group photo"></div>
+        <div class="hero-content container">
+            <h1 id="hero-heading">Leo Club of St. Joseph's College</h1>
+            <p>Unconquered Spirit, Limitless Possibilities</p>
+            <a class="hero-btn" href="#about">Explore Our Journey</a>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="about fade-in-up" aria-labelledby="about-title">
+        <div class="container">
+            <h2 id="about-title" class="section-title">About Us</h2>
+            <div class="about-content">
+                <div class="about-text" id="aboutText">
+                    <p>The Leo Club of St. Joseph's College, Anuradhapura, chartered on <strong>July 24, 2025</strong>, is the first in the school's history and one of the most energetic in Leo District 306 D11, Sri Lanka. Starting with 20 members, the club now has 35 active Alpha Leos committed to leadership and community service.</p>
+                    <p>Backed by its sponsoring Lions Club, it empowers young Josephians to create meaningful change. Guided by the motto "Unconquered Spirit, Limitless Possibilities," the club continues its promising journey of service and inspiration.</p>
+                    <p>Our club may be new, but our spirit is powerful — and our journey of service has only just begun.</p>
+                </div>
+                <div class="about-logo" id="aboutLogo" aria-hidden="false">
+                    <img src="assets/images/logo.png" alt="Leo Club logo of St. Joseph's College Anuradhapura" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="projects fade-in-up" aria-labelledby="projects-title">
+        <div class="container">
+            <h2 id="projects-title" class="section-title">Recent Projects</h2>
+            <div class="project-grid" id="projectsGrid">
+                <article class="project-card fade-in-up" aria-label="Chess Workshop project">
+                    <div class="project-img">
+                        <img src="assets/projects/project1.jpg" alt="Students playing chess during Leo Club Chess Workshop" loading="lazy">
+                    </div>
+                    <div class="project-content">
+                        <p>Chess Workshop</p>
+                    </div>
+                </article>
+
+                <article class="project-card fade-in-up" aria-label="Brandboost360 project">
+                    <div class="project-img">
+                        <img src="assets/projects/project2.jpeg" alt="BRANDBOOST360 event photo" loading="lazy">
+                    </div>
+                    <div class="project-content">
+                        <p>BRANDBOOST360</p>
+                    </div>
+                </article>
+
+                <article class="project-card fade-in-up" aria-label="LEAD 2.0 Orientation">
+                    <div class="project-img">
+                        <img src="assets/projects/project3.jpeg" alt="LEAD 2.0 Orientation event" loading="lazy">
+                    </div>
+                    <div class="project-content">
+                        <h3>LEAD 2.0 Orientation</h3>
+                        <p>Leadership orientation for new members</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="gallery fade-in-up" aria-labelledby="gallery-title">
+        <div class="container">
+            <h2 id="gallery-title" class="section-title">Our Gallery</h2>
+            <div class="gallery-grid">
+                <button class="gallery-item fade-in-up" aria-label="Gallery image 1">
+                    <img class="gallery-img" src="https://files.catbox.moe/xujukf.jpg" alt="Leo Club event photo 1" loading="lazy">
+                    <span class="gallery-overlay"><i class="fas fa-plus" aria-hidden="true"></i></span>
+                </button>
+
+                <button class="gallery-item fade-in-up" aria-label="Gallery image 2">
+                    <img class="gallery-img" src="https://files.catbox.moe/3l4zl9.jpg" alt="Leo Club event photo 2" loading="lazy">
+                    <span class="gallery-overlay"><i class="fas fa-plus" aria-hidden="true"></i></span>
+                </button>
+
+                <button class="gallery-item fade-in-up" aria-label="Gallery image 3">
+                    <img class="gallery-img" src="https://files.catbox.moe/na6ljo.jpg" alt="Leo Club event photo 3" loading="lazy">
+                    <span class="gallery-overlay"><i class="fas fa-plus" aria-hidden="true"></i></span>
+                </button>
+
+                <button class="gallery-item fade-in-up" aria-label="Gallery image 4">
+                    <img class="gallery-img" src="https://files.catbox.moe/e8qwtu.jpg" alt="Leo Club event photo 4" loading="lazy">
+                    <span class="gallery-overlay"><i class="fas fa-plus" aria-hidden="true"></i></span>
+                </button>
+
+                <button class="gallery-item fade-in-up" aria-label="Gallery image 5">
+                    <img class="gallery-img" src="https://files.catbox.moe/nt8emv.jpg" alt="Leo Club event photo 5" loading="lazy">
+                    <span class="gallery-overlay"><i class="fas fa-plus" aria-hidden="true"></i></span>
+                </button>
+
+                <button class="gallery-item fade-in-up" aria-label="Gallery image 6">
+                    <img class="gallery-img" src="https://files.catbox.moe/dsdxgm.jpg" alt="Leo Club event photo 6" loading="lazy">
+                    <span class="gallery-overlay"><i class="fas fa-plus" aria-hidden="true"></i></span>
+                </button>
+
+                <button class="gallery-item fade-in-up" aria-label="Gallery image 7">
+                    <img class="gallery-img" src="https://files.catbox.moe/fb033h.jpg" alt="Leo Club event photo 7" loading="lazy">
+                    <span class="gallery-overlay"><i class="fas fa-plus" aria-hidden="true"></i></span>
+                </button>
+
+                <button class="gallery-item fade-in-up" aria-label="Gallery image 8">
+                    <img class="gallery-img" src="https://files.catbox.moe/xqkvsb.jpg" alt="Leo Club president portrait" loading="lazy">
+                    <span class="gallery-overlay"><i class="fas fa-plus" aria-hidden="true"></i></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM -->
+    <section id="team" class="team fade-in-up" aria-labelledby="team-title">
+        <div class="container">
+            <h2 id="team-title" class="section-title">Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member fade-in-up" aria-label="President">
+                    <div class="member-img">
+                        <img src="assets/team/president.jpg" alt="Leo Isira Didulatha - President" loading="lazy">
+                    </div>
+                    <div class="member-content">
+                        <h3>Leo Isira Didulatha</h3>
+                        <div class="member-role">President</div>
+                    </div>
+                </div>
+
+                <div class="team-member fade-in-up" aria-label="First Vice President">
+                    <div class="member-img">
+                        <img src="assets/team/vice.jpg" alt="Leo Chenuth Manuditha - First Vice President" loading="lazy">
+                    </div>
+                    <div class="member-content">
+                        <h3>Leo Chenuth Manuditha</h3>
+                        <div class="member-role">First Vice President</div>
+                    </div>
+                </div>
+
+                <div class="team-member fade-in-up" aria-label="Second Vice President">
+                    <div class="member-img">
+                        <img src="assets/team/pamidu.jpg" alt="Leo Pamidu Amodaya - Second Vice President" loading="lazy">
+                    </div>
+                    <div class="member-content">
+                        <h3>Leo Pamidu Amodaya</h3>
+                        <div class="member-role">Second Vice President</div>
+                    </div>
+                </div>
+
+                <div class="team-member fade-in-up" aria-label="Secretary">
+                    <div class="member-img">
+                        <img src="assets/team/lakidu.jpg" alt="Leo Lakindu Dineth - Secretary" loading="lazy">
+                    </div>
+                    <div class="member-content">
+                        <h3>Leo Lakindu Dineth</h3>
+                        <div class="member-role">Secretary</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact fade-in-up" aria-labelledby="contact-title">
+        <div class="container">
+            <h2 id="contact-title" class="section-title">Contact Us</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3 style="text-align:center;margin-bottom:12px;color:var(--white)">Get In Touch</h3>
+                    <ul class="contact-details" role="list">
+                        <li>
+                            <i class="fas fa-user" aria-hidden="true"></i>
+                            <div>
+                                <strong>Leo Isira Didulatha (President)</strong><br>
+                                <a href="tel:+94728944864">+94 72 894 4864</a>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-user" aria-hidden="true"></i>
+                            <div>
+                                <strong>Leo Chenuth Manuditha (First Vice President)</strong><br>
+                                <a href="tel:+94727075180">+94 72 707 5180</a>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                            <div>
+                                <strong>Email</strong><br>
+                                <span class="email-box">
+                                    <a href="mailto:leoclubofstjosephscollegeapura@gmail.com">leoclubofstjosephscollegeapura@gmail.com</a>
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                            <div>
+                                <strong>Address</strong><br>
+                                St. Joseph's College, Anuradhapura, Sri Lanka
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="social-links" role="navigation" aria-label="Social links">
+                        <a href="https://www.facebook.com/share/19ekMcHkyT/" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                        <a href="https://www.instagram.com/sjc.leos?igsh=MW1rcThwOXl6MnF0eQ==" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                        <a href="https://whatsapp.com/channel/0029VbB0bJy8KMqnFjxWfX0S" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                        <a href="https://youtube.com/@sjcleos?si=1kLCCgkgJPm5ZiXi" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                        <a href="https://www.linkedin.com/in/leo-club-st-joseph-s-college-anuradhapura-30b246384" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <div style="display:flex;align-items:center;gap:12px">
+                    <i class="fas fa-lion" style="color:var(--gold);font-size:36px" aria-hidden="true"></i>
+                    <span style="font-size:16px;font-weight:700">Leo Club of St. Joseph's College, Anuradhapura</span>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul style="list-style:none;padding:0;margin:0">
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#team">Our Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-social">
+                <h4>Follow Us</h4>
+                <a href="https://www.facebook.com/share/19ekMcHkyT/" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                <a href="https://www.instagram.com/sjc.leos?igsh=MW1rcThwOXl6MnF0eQ==" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                <a href="https://whatsapp.com/channel/0029VbB0bJy8KMqnFjxWfX0S" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                <a href="https://youtube.com/@sjcleos?si=1kLCCgkgJPm5ZiXi" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                <a href="https://www.linkedin.com/in/leo-club-st-joseph-s-college-anuradhapura-30b246384" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p style="margin:0;color:rgba(255,255,255,0.95)">&copy; 2025 Leo Club of St. Joseph's College, Anuradhapura. Designed and Developed by <a href="https://pixstudios.lk" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none">Pix Studios Sri Lanka</a></p>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <button class="back-to-top" aria-label="Back to top" title="Back to top">
+        <i class="fas fa-chevron-up" aria-hidden="true"></i>
+    </button>
+
+    <script>
+        // DOM helpers
+        const qs = s => document.querySelector(s);
+        const qsa = s => Array.from(document.querySelectorAll(s));
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const nav = qs('nav');
+            const menuToggle = qs('.menu-toggle');
+            const navLinks = qs('.nav-links');
+            const backToTop = qs('.back-to-top');
+
+            // Mobile menu toggle - accessible
+            menuToggle.addEventListener('click', () => {
+                const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+                menuToggle.setAttribute('aria-expanded', String(!expanded));
+                navLinks.classList.toggle('show');
+            });
+
+            // Close mobile menu on link click
+            qsa('.nav-links a').forEach(a => a.addEventListener('click', () => {
+                navLinks.classList.remove('show');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }));
+
+            // Sticky nav when scrolling: add class and toggle for blur/backdrop
+            const onScroll = () => {
+                if (window.scrollY > 60) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
+                // Back-to-top visibility
+                if (window.scrollY > 300) backToTop.classList.add('visible'); else backToTop.classList.remove('visible');
+            };
+            window.addEventListener('scroll', onScroll, {passive:true});
+            onScroll();
+
+            // Back to top behaviour
+            backToTop.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+
+            // IntersectionObserver for reveal animations
+            const appearOptions = { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.12 };
+            const appearObserver = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('appear');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+
+            // targets to observe
+            const toObserve = [
+                '#aboutText', '#aboutLogo',
+                '.project-card', '.team-member'
+            ];
+            toObserve.forEach(sel => {
+                qsa(sel).forEach(el => appearObserver.observe(el));
+            });
+
+            // Improve keyboard accessibility for gallery items (they are buttons already)
+            qsa('.gallery-item').forEach(btn => {
+                btn.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        // simple lightbox stub: open image in new tab for quick preview
+                        const img = btn.querySelector('.gallery-img');
+                        if (img && img.src) {
+                            window.open(img.src, '_blank', 'noopener');
+                        }
+                    }
+                });
+            });
+
+            // Lazy fallback: ensure images have loading attribute (defensive)
+            qsa('img').forEach(img => {
+                if (!img.hasAttribute('loading')) img.setAttribute('loading','lazy');
+            });
+
+            // Reduce CPU: throttle resize observer (optional)
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    // any responsive recalculations could go here
+                }, 250);
+            });
+
+            // Respect prefers-reduced-motion: reduce smooth scroll if requested
+            const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (reduced) {
+                document.documentElement.style.setProperty('scroll-behavior', 'auto');
+            }
+
+            // Animate fade-in-up on scroll
+            const fadeEls = qsa('.fade-in-up, .fade-in');
+            const fadeObs = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.classList.add('animated');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+            fadeEls.forEach(el => fadeObs.observe(el));
+        });
+    </script>
+</body>
+</html>
