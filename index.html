@@ -23,6 +23,27 @@
             --ease: 0.28s cubic-bezier(.4,0,.2,1);
         }
 
+        /* Snow Container */
+        #snow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            overflow: hidden;
+        }
+        
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1em;
+            user-select: none;
+            pointer-events: none;
+        }
+
         /* Base */
         *{box-sizing:border-box}
         html{scroll-behavior:smooth}
@@ -33,6 +54,7 @@
             color: #fff;
             -webkit-font-smoothing:antialiased;
             -moz-osx-font-smoothing:grayscale;
+            position: relative;
         }
         .container{
             max-width:var(--container-max);
@@ -211,16 +233,27 @@
             .nav-links a{color:var(--white);font-size:18px}
             .project-grid,.team-grid{grid-template-columns:1fr}
             .gallery-grid{grid-template-columns:repeat(2,1fr)}
+            /* Reduce snowflakes on mobile for performance */
+            .snowflake {
+                font-size: 0.8em;
+            }
         }
         @media (max-width:400px){
             .hero h1{font-size:1.8rem}
             section{padding:60px 0}
             .hero{min-height:520px}
+            /* Further reduce snowflakes on very small screens */
+            .snowflake {
+                font-size: 0.6em;
+            }
         }
 
         /* Accessibility: reduce motion */
         @media (prefers-reduced-motion:reduce){
             *{transition:none!important;animation:none!important}
+            .snowflake {
+                display: none !important;
+            }
         }
 
         /* SOFT ANIMATIONS */
@@ -239,6 +272,18 @@
         .fade-in {
             opacity: 0;
             animation: fadeIn 1.2s cubic-bezier(.4,0,.2,1) forwards;
+        }
+
+        /* Snowflake animations */
+        @keyframes snowfall {
+            0% {
+                transform: translateY(-10px) translateX(0px) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh) translateX(20px) rotate(360deg);
+                opacity: 0;
+            }
         }
 
         /* SOFTER LOOKS */
@@ -311,6 +356,9 @@
     </style>
 </head>
 <body>
+    <!-- Snowfall Container -->
+    <div id="snow-container" aria-hidden="true"></div>
+
     <!-- Navigation -->
     <nav role="navigation" aria-label="Main Navigation">
         <div class="container nav-inner">
@@ -592,11 +640,43 @@
         const qs = s => document.querySelector(s);
         const qsa = s => Array.from(document.querySelectorAll(s));
 
+        // Snowfall effect
+        function createSnowfall() {
+            const snowContainer = qs('#snow-container');
+            const snowflakeCount = 60; // Adjust number of snowflakes
+            
+            // Snowflake characters
+            const snowflakes = ['❄', '❅', '❆', '*', '·', '+'];
+            
+            for (let i = 0; i < snowflakeCount; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.innerHTML = snowflakes[Math.floor(Math.random() * snowflakes.length)];
+                snowflake.style.left = Math.random() * 100 + 'vw';
+                snowflake.style.opacity = Math.random() * 0.7 + 0.3;
+                snowflake.style.fontSize = (Math.random() * 1.2 + 0.8) + 'em';
+                
+                // Random animation duration and delay
+                const duration = Math.random() * 8 + 6; // 6-14 seconds
+                const delay = Math.random() * 5; // 0-5 seconds delay
+                
+                snowflake.style.animation = `snowfall ${duration}s linear ${delay}s infinite`;
+                
+                // Add slight horizontal movement
+                snowflake.style.transform = `translateX(${Math.random() * 40 - 20}px)`;
+                
+                snowContainer.appendChild(snowflake);
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const nav = qs('nav');
             const menuToggle = qs('.menu-toggle');
             const navLinks = qs('.nav-links');
             const backToTop = qs('.back-to-top');
+
+            // Initialize snowfall
+            createSnowfall();
 
             // Mobile menu toggle - accessible
             menuToggle.addEventListener('click', () => {
@@ -692,4 +772,3 @@
     </script>
 </body>
 </html>
-
