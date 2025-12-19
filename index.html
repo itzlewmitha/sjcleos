@@ -42,6 +42,9 @@
             font-size: 1em;
             user-select: none;
             pointer-events: none;
+            animation-name: snowfall;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
         }
 
         /* Base */
@@ -64,6 +67,18 @@
         section{padding:80px 0}
         h1,h2,h3,h4{font-weight:700;margin:0 0 16px 0}
         p{margin:0 0 12px 0;line-height:1.5;color:rgba(255,255,255,0.95)}
+
+        /* Snowflake animations */
+        @keyframes snowfall {
+            0% {
+                transform: translateY(-10px) translateX(0px) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh) translateX(20px) rotate(360deg);
+                opacity: 0;
+            }
+        }
 
         /* Section title */
         .section-title{text-align:center; margin-bottom:40px; position:relative; color:var(--white)}
@@ -272,18 +287,6 @@
         .fade-in {
             opacity: 0;
             animation: fadeIn 1.2s cubic-bezier(.4,0,.2,1) forwards;
-        }
-
-        /* Snowflake animations */
-        @keyframes snowfall {
-            0% {
-                transform: translateY(-10px) translateX(0px) rotate(0deg);
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(100vh) translateX(20px) rotate(360deg);
-                opacity: 0;
-            }
         }
 
         /* SOFTER LOOKS */
@@ -754,6 +757,8 @@
             const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             if (reduced) {
                 document.documentElement.style.setProperty('scroll-behavior', 'auto');
+                // Also remove snowflakes
+                qs('#snow-container').style.display = 'none';
             }
 
             // Animate fade-in-up on scroll
