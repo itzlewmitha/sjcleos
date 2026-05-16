@@ -1,7 +1,13 @@
 {
-  "projects": [],
+  "projects": [
+    {
+      "title": "Blue Revival – Restore. Protect. Sustain",
+      "desc": " ",
+      "image": "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/projects/1778917997287_202605091454021903526642.jpeg"
+    }
+  ],
   "gallery": [],
   "team": [],
   "about": "<p>The <strong>Leo Club of St. Joseph's College, Anuradhapura</strong>, chartered on <strong>July 24, 2025</strong>, represents the first chapter in our school's history.</p>",
-  "lastUpdated": "2026-05-16T06:47:26.061Z"
+  "lastUpdated": "2026-05-16T07:53:18.918Z"
 }
