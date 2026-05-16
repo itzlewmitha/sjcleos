@@ -1,6 +1,11 @@
 {
   "projects": [
     {
+      "title": " CHECKMATE 2.0 CHESS WORKSHOP - PHASE 02",
+      "desc": " ",
+      "image": "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/projects/1778923150328_202602070731081849465864.jpeg"
+    },
+    {
       "title": "Paws & Purpose – Because Every Life Matters",
       "desc": " ",
       "image": "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/projects/1778923073266_d6ec57af-c291-498d-8c70-1946a3e9482d.jfif"
@@ -58,5 +63,5 @@
     }
   ],
   "about": "<p>The <strong>Leo Club of St. Joseph's Collge, Anuradhapura</strong>, chartered on <strong>July 24, 2025</strong>, represents the first chapter in our school's history.</p>",
-  "lastUpdated": "2026-05-16T09:17:54.253Z"
+  "lastUpdated": "2026-05-16T09:19:11.311Z"
 }
