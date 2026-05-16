@@ -1,6 +1,11 @@
 {
   "projects": [
     {
+      "title": "Journey to Leadership: Lessons from a Leo Educator",
+      "desc": " ",
+      "image": "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/projects/1778919127112_8.jpeg"
+    },
+    {
       "title": "Blue Revival – Restore. Protect. Sustain",
       "desc": " ",
       "image": "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/projects/1778917997287_202605091454021903526642.jpeg"
@@ -9,5 +14,5 @@
   "gallery": [],
   "team": [],
   "about": "<p>The <strong>Leo Club of St. Joseph's Collge, Anuradhapura</strong>, chartered on <strong>July 24, 2025</strong>, represents the first chapter in our school's history.</p>",
-  "lastUpdated": "2026-05-16T08:11:34.905Z"
+  "lastUpdated": "2026-05-16T08:12:08.200Z"
 }
