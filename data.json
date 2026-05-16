@@ -1,6 +1,11 @@
 {
   "projects": [
     {
+      "title": "AeroBotix 2.0 – Where Innovation Takes Flight",
+      "desc": " ",
+      "image": "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/projects/1778922853926_91f66778-fab0-416d-bb18-434c5d6b01c1.jfif"
+    },
+    {
       "title": "Capture It – A One-Day Basic Photography Workshop",
       "desc": " ",
       "image": "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/projects/1778922771053_7.jpeg"
@@ -38,5 +43,5 @@
     }
   ],
   "about": "<p>The <strong>Leo Club of St. Joseph's Collge, Anuradhapura</strong>, chartered on <strong>July 24, 2025</strong>, represents the first chapter in our school's history.</p>",
-  "lastUpdated": "2026-05-16T09:12:52.065Z"
+  "lastUpdated": "2026-05-16T09:14:15.154Z"
 }
