@@ -1,125 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Admin Nexus — Leo Club CMS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Nexus - Leo Club CMS</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --cosmic-black: #0a0a0f;
-            --nebula-blue: #0f1a30;
-            --celestial-gold: #ffd700;
-            --neon-cyan: #00f3ff;
-            --starlight: #ffffff;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 215, 0, 0.15);
-            --radius: 16px;
-        }
         body {
             font-family: 'Inter', sans-serif;
-            background: radial-gradient(ellipse at top, var(--nebula-blue) 0%, var(--cosmic-black) 100%);
-            color: var(--starlight);
-            min-height: 100vh;
+            background: #0a0a0f;
+            color: white;
             padding: 20px;
         }
         .container { max-width: 1400px; margin: 0 auto; }
         .header {
-            background: rgba(10, 10, 15, 0.7);
-            backdrop-filter: blur(15px);
-            border-radius: var(--radius);
-            padding: 20px 30px;
-            margin-bottom: 30px;
-            border: 1px solid var(--glass-border);
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .header h1 {
-            font-family: 'Orbitron', sans-serif;
-            background: linear-gradient(to right, var(--celestial-gold), var(--neon-cyan));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            background: linear-gradient(135deg, #1a1a2e, #0a0a0f);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ffd70033;
         }
         .tabs {
             display: flex;
-            gap: 8px;
+            gap: 10px;
             flex-wrap: wrap;
-            margin-bottom: 30px;
-            border-bottom: 1px solid var(--glass-border);
-            padding-bottom: 10px;
+            margin-bottom: 20px;
         }
         .tab-btn {
-            background: transparent;
+            background: #1a1a2e;
             border: none;
-            color: rgba(255,255,255,0.6);
-            font-family: 'Orbitron', sans-serif;
-            padding: 12px 28px;
-            border-radius: 40px;
+            padding: 12px 24px;
+            border-radius: 30px;
+            color: white;
             cursor: pointer;
-            transition: all 0.3s;
+            font-family: 'Orbitron', sans-serif;
         }
         .tab-btn.active {
-            background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(0,243,255,0.2));
-            color: var(--neon-cyan);
-            border: 1px solid var(--celestial-gold);
+            background: linear-gradient(90deg, #ffd700, #00f3ff);
+            color: #0a0a0f;
         }
-        .tab-pane { display: none; animation: fadeIn 0.4s ease; }
+        .tab-pane { display: none; }
         .tab-pane.active-pane { display: block; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius);
+        .card {
+            background: #1a1a2e;
+            border-radius: 16px;
             padding: 25px;
-            margin-bottom: 30px;
-        }
-        .form-group { margin-bottom: 20px; }
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--celestial-gold);
-            font-size: 0.85rem;
-            font-weight: 500;
+            margin-bottom: 20px;
+            border: 1px solid #ffd70033;
         }
         input, textarea {
             width: 100%;
-            padding: 12px 16px;
-            background: rgba(0,0,0,0.5);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            color: var(--starlight);
-        }
-        .file-drop-area {
-            padding: 30px;
-            background: rgba(0,0,0,0.3);
-            border: 2px dashed var(--glass-border);
-            border-radius: 12px;
-            text-align: center;
-            cursor: pointer;
-        }
-        .file-drop-area:hover { border-color: var(--neon-cyan); background: rgba(0,243,255,0.1); }
-        .image-preview { margin-top: 15px; max-width: 200px; border-radius: 12px; overflow: hidden; }
-        .image-preview img { width: 100%; height: auto; }
-        .btn-primary {
-            background: linear-gradient(90deg, var(--celestial-gold), var(--neon-cyan));
-            border: none;
-            padding: 12px 28px;
-            border-radius: 40px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-        .btn-danger {
-            background: rgba(255,0,100,0.8);
-            border: none;
-            padding: 6px 12px;
-            border-radius: 20px;
+            padding: 12px;
+            margin-bottom: 15px;
+            background: #0a0a0f;
+            border: 1px solid #ffd70033;
+            border-radius: 8px;
             color: white;
+        }
+        button {
+            background: linear-gradient(90deg, #ffd700, #00f3ff);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: bold;
             cursor: pointer;
         }
         .items-grid {
@@ -129,350 +74,195 @@
             margin-top: 20px;
         }
         .item-card {
-            background: rgba(0,0,0,0.5);
+            background: #0a0a0f;
             border-radius: 12px;
             overflow: hidden;
-            border: 1px solid var(--glass-border);
+            border: 1px solid #ffd70033;
         }
         .item-card img { width: 100%; height: 180px; object-fit: cover; }
         .item-card .info { padding: 15px; }
+        .delete-btn {
+            background: #ff3366;
+            padding: 6px 12px;
+            margin-top: 10px;
+        }
         .toast {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: rgba(0,0,0,0.9);
-            border-left: 4px solid var(--neon-cyan);
+            bottom: 20px;
+            right: 20px;
+            background: #00f3ff;
+            color: #0a0a0f;
             padding: 12px 24px;
-            border-radius: 12px;
+            border-radius: 8px;
             display: none;
-            z-index: 2000;
         }
-        .github-setup {
-            background: rgba(0,0,0,0.6);
-            border-radius: var(--radius);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        .github-setup input, .github-setup textarea {
-            background: rgba(255,255,255,0.1);
-            margin-bottom: 10px;
-        }
-        .status-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            margin-left: 10px;
-        }
-        .status-connected { background: #00ff0080; }
-        .status-disconnected { background: #ff000080; }
-        @media (max-width: 768px) { .items-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 <div class="container">
     <div class="header">
-        <div>
-            <h1><i class="fas fa-crown"></i> ADMIN NEXUS</h1>
-            <p>GitHub-Powered CMS | Changes save to your repository</p>
-        </div>
-        <a href="index.html" class="btn-primary" style="text-decoration:none;" target="_blank"><i class="fas fa-globe"></i> VIEW SITE</a>
-    </div>
-
-    <!-- GitHub Setup Section -->
-    <div class="github-setup" id="githubSetup">
-        <h3><i class="fab fa-github"></i> GitHub Connection</h3>
-        <div id="connectionStatus"></div>
-        <div class="form-group">
-            <label>GitHub Repository (format: username/repo)</label>
-            <input type="text" id="repoName" placeholder="yourusername/leo-club-data" value="">
-        </div>
-        <div class="form-group">
-            <label>GitHub Personal Access Token</label>
-            <input type="password" id="githubToken" placeholder="ghp_xxxxxxxxxxxx">
-            <small>Create token at: GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)<br>
-            Required scopes: <strong>repo</strong> (full control)</small>
-        </div>
-        <div class="form-group">
-            <label>Branch Name</label>
-            <input type="text" id="branchName" placeholder="main" value="main">
-        </div>
-        <button id="saveGitSettings" class="btn-primary"><i class="fas fa-link"></i> Connect & Save Settings</button>
-        <button id="testConnection" class="btn-primary" style="margin-left:10px;"><i class="fas fa-plug"></i> Test Connection</button>
-        <button id="syncFromGit" class="btn-primary" style="margin-left:10px;"><i class="fas fa-download"></i> Sync from GitHub</button>
-        <div id="gitStatus" style="margin-top: 15px; padding: 10px; border-radius: 8px;"></div>
+        <h1><i class="fas fa-crown"></i> Admin Nexus</h1>
+        <p>Manage your Leo Club website content</p>
     </div>
 
     <div class="tabs">
-        <button class="tab-btn active" data-tab="projects-tab"><i class="fas fa-rocket"></i> PROJECTS</button>
-        <button class="tab-btn" data-tab="gallery-tab"><i class="fas fa-images"></i> GALLERY</button>
-        <button class="tab-btn" data-tab="team-tab"><i class="fas fa-users"></i> TEAM</button>
-        <button class="tab-btn" data-tab="about-tab"><i class="fas fa-info-circle"></i> ABOUT</button>
+        <button class="tab-btn active" data-tab="projects">Projects</button>
+        <button class="tab-btn" data-tab="gallery">Gallery</button>
+        <button class="tab-btn" data-tab="team">Team</button>
+        <button class="tab-btn" data-tab="about">About</button>
     </div>
 
-    <!-- PROJECTS TAB -->
-    <div id="projects-tab" class="tab-pane active-pane">
-        <div class="glass-card">
-            <h3><i class="fas fa-plus-circle"></i> ADD PROJECT</h3>
-            <form id="projectForm">
-                <div class="form-group">
-                    <label>TITLE</label>
-                    <input type="text" id="projTitle" required>
-                </div>
-                <div class="form-group">
-                    <label>DESCRIPTION</label>
-                    <textarea id="projDesc" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label>IMAGE (Upload)</label>
-                    <div class="file-drop-area" id="projectDropArea">
-                        <i class="fas fa-cloud-upload-alt"></i> Click or drag image<br>
-                        <input type="file" id="projImageInput" accept="image/*" style="display:none">
-                    </div>
-                    <div id="projImagePreview" class="image-preview"></div>
-                </div>
-                <button type="submit" class="btn-primary">ADD & PUBLISH TO GITHUB</button>
-            </form>
+    <!-- Projects Tab -->
+    <div id="projects" class="tab-pane active-pane">
+        <div class="card">
+            <h3>Add New Project</h3>
+            <input type="text" id="projTitle" placeholder="Project Title">
+            <textarea id="projDesc" placeholder="Project Description"></textarea>
+            <input type="text" id="projImage" placeholder="Image URL (GitHub raw link)">
+            <button onclick="addProject()">Add Project</button>
         </div>
-        <div class="glass-card">
-            <h3>PROJECTS</h3>
+        <div class="card">
+            <h3>Current Projects</h3>
             <div id="projectsList" class="items-grid"></div>
         </div>
     </div>
 
-    <!-- GALLERY TAB -->
-    <div id="gallery-tab" class="tab-pane">
-        <div class="glass-card">
-            <h3>ADD GALLERY IMAGES</h3>
-            <form id="galleryForm">
-                <div class="file-drop-area" id="galleryDropArea">
-                    <i class="fas fa-cloud-upload-alt"></i> Select multiple images<br>
-                    <input type="file" id="galleryImageInput" accept="image/*" multiple style="display:none">
-                </div>
-                <div id="galleryImagePreview" style="display:flex; gap:10px; flex-wrap:wrap; margin-top:15px;"></div>
-                <button type="submit" class="btn-primary" style="margin-top:15px;">UPLOAD TO GALLERY</button>
-            </form>
+    <!-- Gallery Tab -->
+    <div id="gallery" class="tab-pane">
+        <div class="card">
+            <h3>Add Gallery Image</h3>
+            <input type="text" id="galleryUrl" placeholder="Image URL (GitHub raw link)">
+            <button onclick="addGalleryImage()">Add Image</button>
         </div>
-        <div class="glass-card">
-            <h3>GALLERY</h3>
-            <div id="galleryList" class="items-grid" style="grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));"></div>
+        <div class="card">
+            <h3>Gallery</h3>
+            <div id="galleryList" class="items-grid"></div>
         </div>
     </div>
 
-    <!-- TEAM TAB -->
-    <div id="team-tab" class="tab-pane">
-        <div class="glass-card">
-            <h3>ADD TEAM MEMBER</h3>
-            <form id="teamForm">
-                <div class="form-group"><input type="text" id="teamName" placeholder="Full Name" required></div>
-                <div class="form-group"><input type="text" id="teamRole" placeholder="Role" required></div>
-                <div class="form-group"><textarea id="teamDesc" placeholder="Description"></textarea></div>
-                <div class="file-drop-area" id="teamDropArea">Click to upload photo<input type="file" id="teamImageInput" accept="image/*" style="display:none"></div>
-                <div id="teamImagePreview" class="image-preview"></div>
-                <button type="submit" class="btn-primary" style="margin-top:15px;">ADD MEMBER</button>
-            </form>
+    <!-- Team Tab -->
+    <div id="team" class="tab-pane">
+        <div class="card">
+            <h3>Add Team Member</h3>
+            <input type="text" id="teamName" placeholder="Name">
+            <input type="text" id="teamRole" placeholder="Role">
+            <textarea id="teamDesc" placeholder="Description"></textarea>
+            <input type="text" id="teamImg" placeholder="Image URL">
+            <button onclick="addTeamMember()">Add Member</button>
         </div>
-        <div class="glass-card">
-            <h3>TEAM</h3>
+        <div class="card">
+            <h3>Team Members</h3>
             <div id="teamList" class="items-grid"></div>
         </div>
     </div>
 
-    <!-- ABOUT TAB -->
-    <div id="about-tab" class="tab-pane">
-        <div class="glass-card">
-            <h3>EDIT ABOUT SECTION</h3>
-            <textarea id="aboutEditor" rows="10" style="width:100%"></textarea>
-            <button id="updateAboutBtn" class="btn-primary" style="margin-top:15px;">UPDATE ABOUT</button>
+    <!-- About Tab -->
+    <div id="about" class="tab-pane">
+        <div class="card">
+            <h3>Edit About Section</h3>
+            <textarea id="aboutContent" rows="10" placeholder="About content (HTML allowed)"></textarea>
+            <button onclick="updateAbout()">Update About</button>
         </div>
     </div>
 </div>
+
 <div id="toast" class="toast"></div>
 
 <script>
+    const REPO = "itzlewmitha/sjcleos";
+    const TOKEN = "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";
+    
     let projects = [];
     let gallery = [];
     let team = [];
-    let aboutContent = "";
-    
-    // GitHub settings
-    let gitRepo = "";
-    let gitToken = "";
-    let gitBranch = "main";
-    let dataSha = null; // SHA for updating existing file
+    let about = "";
+    let dataSha = null;
 
-    // Load saved GitHub settings
-    function loadGitSettings() {
-        gitRepo = localStorage.getItem('git_repo') || "";
-        gitToken = localStorage.getItem('git_token') || "";
-        gitBranch = localStorage.getItem('git_branch') || "main";
-        document.getElementById('repoName').value = gitRepo;
-        document.getElementById('githubToken').value = gitToken;
-        document.getElementById('branchName').value = gitBranch;
-        updateConnectionStatus();
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        toast.innerText = msg;
+        toast.style.display = 'block';
+        setTimeout(() => toast.style.display = 'none', 3000);
     }
 
-    function saveGitSettings() {
-        gitRepo = document.getElementById('repoName').value.trim();
-        gitToken = document.getElementById('githubToken').value.trim();
-        gitBranch = document.getElementById('branchName').value.trim();
-        localStorage.setItem('git_repo', gitRepo);
-        localStorage.setItem('git_token', gitToken);
-        localStorage.setItem('git_branch', gitBranch);
-        updateConnectionStatus();
-        showToast("Settings saved!");
-    }
-
-    function updateConnectionStatus() {
-        const statusDiv = document.getElementById('connectionStatus');
-        if(gitRepo && gitToken) {
-            statusDiv.innerHTML = '<span class="status-badge status-connected">✓ GitHub Ready</span> <span style="font-size:12px;">Repo: ' + gitRepo + '</span>';
-        } else {
-            statusDiv.innerHTML = '<span class="status-badge status-disconnected">⚠ Not Configured</span> <span style="font-size:12px;">Enter repo and token above</span>';
+    async function loadData() {
+        const url = `https://api.github.com/repos/${REPO}/contents/data.json`;
+        try {
+            const response = await fetch(url, {
+                headers: { 'Authorization': `token ${TOKEN}` }
+            });
+            if(response.ok) {
+                const data = await response.json();
+                dataSha = data.sha;
+                const content = JSON.parse(atob(data.content));
+                projects = content.projects || [];
+                gallery = content.gallery || [];
+                team = content.team || [];
+                about = content.about || "";
+                renderAll();
+                showToast("Data loaded from GitHub!");
+            } else {
+                showToast("No existing data, starting fresh");
+                renderAll();
+            }
+        } catch(e) {
+            showToast("Error loading: " + e.message);
+            renderAll();
         }
     }
 
-    // Upload image to GitHub as Base64
-    async function uploadImageToGit(filename, base64Data, folder) {
-        if(!gitRepo || !gitToken) throw new Error("GitHub not configured");
-        const path = `data/${folder}/${filename}`;
-        const url = `https://api.github.com/repos/${gitRepo}/contents/${path}`;
+    async function saveToGitHub() {
+        const data = { projects, gallery, team, about, lastUpdated: new Date().toISOString() };
+        const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
         
-        // Remove base64 prefix
-        const base64Content = base64Data.split(',')[1];
-        
-        const response = await fetch(url, {
-            method: 'PUT',
-            headers: {
-                'Authorization': `token ${gitToken}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                message: `Upload ${folder} image: ${filename}`,
-                content: base64Content,
-                branch: gitBranch
-            })
-        });
-        
-        if(!response.ok) throw new Error(`Upload failed: ${response.status}`);
-        const data = await response.json();
-        return data.content.download_url;
-    }
-
-    // Save master data.json to GitHub
-    async function saveMasterData() {
-        if(!gitRepo || !gitToken) {
-            showToast("Please configure GitHub settings first", true);
-            return false;
-        }
-        
-        const masterData = {
-            projects: projects,
-            gallery: gallery,
-            team: team,
-            about: aboutContent,
-            lastUpdated: new Date().toISOString()
-        };
-        
-        const content = btoa(unescape(encodeURIComponent(JSON.stringify(masterData, null, 2))));
-        const url = `https://api.github.com/repos/${gitRepo}/contents/data.json`;
-        
-        let body = {
+        const url = `https://api.github.com/repos/${REPO}/contents/data.json`;
+        const body = {
             message: "Update website data",
             content: content,
-            branch: gitBranch
+            branch: "main"
         };
-        
-        // If we have SHA, we're updating existing file
-        if(dataSha) {
-            body.sha = dataSha;
-        }
+        if(dataSha) body.sha = dataSha;
         
         try {
             const response = await fetch(url, {
                 method: 'PUT',
                 headers: {
-                    'Authorization': `token ${gitToken}`,
+                    'Authorization': `token ${TOKEN}`,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(body)
             });
-            
             if(response.ok) {
                 const result = await response.json();
                 dataSha = result.content.sha;
-                showToast("✅ Data saved to GitHub! Changes live everywhere.");
+                showToast("✅ Saved to GitHub! Site updated.");
                 return true;
             } else {
-                const error = await response.json();
-                throw new Error(error.message);
-            }
-        } catch(e) {
-            showToast("Error saving: " + e.message, true);
-            return false;
-        }
-    }
-
-    // Load data from GitHub
-    async function loadFromGitHub() {
-        if(!gitRepo || !gitToken) {
-            showToast("Please configure GitHub first", true);
-            return false;
-        }
-        
-        const url = `https://api.github.com/repos/${gitRepo}/contents/data.json`;
-        
-        try {
-            const response = await fetch(url, {
-                headers: { 'Authorization': `token ${gitToken}` }
-            });
-            
-            if(response.status === 404) {
-                showToast("No existing data file. Creating new one on first save.");
+                showToast("Error saving to GitHub");
                 return false;
             }
-            
-            if(!response.ok) throw new Error("Failed to fetch");
-            
-            const data = await response.json();
-            dataSha = data.sha;
-            const decodedContent = JSON.parse(decodeURIComponent(escape(atob(data.content))));
-            
-            projects = decodedContent.projects || [];
-            gallery = decodedContent.gallery || [];
-            team = decodedContent.team || [];
-            aboutContent = decodedContent.about || defaultAbout();
-            
-            renderAll();
-            showToast("✅ Data loaded from GitHub!");
-            return true;
         } catch(e) {
-            showToast("Could not load from GitHub: " + e.message, true);
+            showToast("Error: " + e.message);
             return false;
         }
-    }
-
-    function defaultAbout() {
-        return `<p>The <strong>Leo Club of St. Joseph's College, Anuradhapura</strong>, chartered on <strong>July 24, 2025</strong>, represents the first chapter in our school's history.</p><p>Beginning with 20 visionary members, our legion has expanded to 35 Alpha Leos—each committed to leadership, innovation, and community service.</p>`;
     }
 
     function renderAll() {
         renderProjects();
         renderGallery();
         renderTeam();
-        document.getElementById('aboutEditor').value = aboutContent;
+        document.getElementById('aboutContent').value = about;
     }
 
     function renderProjects() {
         const container = document.getElementById('projectsList');
-        if(!container) return;
         container.innerHTML = projects.map((p, i) => `
             <div class="item-card">
-                <img src="${p.image}" onerror="this.src='https://placehold.co/400x200/1a1a2e/ffd700?text=No+Image'">
+                <img src="${p.image}" onerror="this.src='https://placehold.co/400x200'">
                 <div class="info">
-                    <h4>${escapeHtml(p.title)}</h4>
-                    <p>${escapeHtml(p.desc)}</p>
-                    <button class="btn-danger" onclick="deleteProject(${i})">Delete</button>
+                    <h4>${p.title}</h4>
+                    <p>${p.desc}</p>
+                    <button class="delete-btn" onclick="deleteProject(${i})">Delete</button>
                 </div>
             </div>
         `).join('');
@@ -482,8 +272,10 @@
         const container = document.getElementById('galleryList');
         container.innerHTML = gallery.map((img, i) => `
             <div class="item-card">
-                <img src="${img}" style="height:150px">
-                <div class="info"><button class="btn-danger" onclick="deleteGallery(${i})">Remove</button></div>
+                <img src="${img}" onerror="this.src='https://placehold.co/400x400'">
+                <div class="info">
+                    <button class="delete-btn" onclick="deleteGallery(${i})">Delete</button>
+                </div>
             </div>
         `).join('');
     }
@@ -492,124 +284,68 @@
         const container = document.getElementById('teamList');
         container.innerHTML = team.map((m, i) => `
             <div class="item-card">
-                <img src="${m.img}" style="height:180px">
+                <img src="${m.img}" onerror="this.src='https://placehold.co/400x400'">
                 <div class="info">
-                    <h4>${escapeHtml(m.name)}</h4>
-                    <p><strong>${escapeHtml(m.role)}</strong></p>
-                    <p>${escapeHtml(m.desc)}</p>
-                    <button class="btn-danger" onclick="deleteTeam(${i})">Delete</button>
+                    <h4>${m.name}</h4>
+                    <p><strong>${m.role}</strong></p>
+                    <p>${m.desc}</p>
+                    <button class="delete-btn" onclick="deleteTeam(${i})">Delete</button>
                 </div>
             </div>
         `).join('');
     }
 
-    window.deleteProject = async (i) => { projects.splice(i,1); await saveMasterData(); renderProjects(); };
-    window.deleteGallery = async (i) => { gallery.splice(i,1); await saveMasterData(); renderGallery(); };
-    window.deleteTeam = async (i) => { team.splice(i,1); await saveMasterData(); renderTeam(); };
-
-    function escapeHtml(str) { return str?.replace(/[&<>]/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;'}[m]; }) || ''; }
-    function showToast(msg, isErr=false) {
-        const toast = document.getElementById('toast');
-        toast.innerText = msg;
-        toast.style.display = 'block';
-        toast.style.borderLeftColor = isErr ? '#ff3366' : '#00f3ff';
-        setTimeout(() => toast.style.display = 'none', 3000);
-    }
-
-    async function imageToBase64(file) {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = reject;
-            reader.readAsDataURL(file);
-        });
-    }
-
-    // Form handlers with GitHub save
-    let currentProjectImage = null;
-    document.getElementById('projectDropArea').onclick = () => document.getElementById('projImageInput').click();
-    document.getElementById('projImageInput').onchange = async (e) => {
-        const img = await imageToBase64(e.target.files[0]);
-        currentProjectImage = img;
-        document.getElementById('projImagePreview').innerHTML = `<img src="${img}">`;
-    };
-    
-    document.getElementById('projectForm').onsubmit = async (e) => {
-        e.preventDefault();
+    async function addProject() {
         const title = document.getElementById('projTitle').value;
         const desc = document.getElementById('projDesc').value;
-        if(!title || !desc || !currentProjectImage) { showToast("Fill all fields and upload image", true); return; }
-        projects.unshift({ title, desc, image: currentProjectImage });
-        if(await saveMasterData()) {
-            renderProjects();
-            e.target.reset();
-            document.getElementById('projImagePreview').innerHTML = '';
-            currentProjectImage = null;
-        }
-    };
+        const image = document.getElementById('projImage').value;
+        if(title && desc && image) {
+            projects.push({ title, desc, image });
+            if(await saveToGitHub()) {
+                renderProjects();
+                document.getElementById('projTitle').value = '';
+                document.getElementById('projDesc').value = '';
+                document.getElementById('projImage').value = '';
+            }
+        } else showToast("Fill all fields");
+    }
 
-    // Gallery multiple upload
-    let pendingGallery = [];
-    document.getElementById('galleryDropArea').onclick = () => document.getElementById('galleryImageInput').click();
-    document.getElementById('galleryImageInput').onchange = async (e) => {
-        pendingGallery = [];
-        const preview = document.getElementById('galleryImagePreview');
-        preview.innerHTML = '';
-        for(const file of Array.from(e.target.files)) {
-            const base64 = await imageToBase64(file);
-            pendingGallery.push(base64);
-            preview.innerHTML += `<img src="${base64}" style="width:80px;height:80px;object-fit:cover;border-radius:8px;">`;
+    async function addGalleryImage() {
+        const url = document.getElementById('galleryUrl').value;
+        if(url) {
+            gallery.push(url);
+            if(await saveToGitHub()) {
+                renderGallery();
+                document.getElementById('galleryUrl').value = '';
+            }
         }
-    };
-    document.getElementById('galleryForm').onsubmit = async (e) => {
-        e.preventDefault();
-        if(pendingGallery.length === 0) { showToast("Select images first", true); return; }
-        gallery.push(...pendingGallery);
-        if(await saveMasterData()) {
-            renderGallery();
-            pendingGallery = [];
-            document.getElementById('galleryImagePreview').innerHTML = '';
-            document.getElementById('galleryImageInput').value = '';
-        }
-    };
+    }
 
-    // Team form
-    let currentTeamImage = null;
-    document.getElementById('teamDropArea').onclick = () => document.getElementById('teamImageInput').click();
-    document.getElementById('teamImageInput').onchange = async (e) => {
-        currentTeamImage = await imageToBase64(e.target.files[0]);
-        document.getElementById('teamImagePreview').innerHTML = `<img src="${currentTeamImage}">`;
-    };
-    document.getElementById('teamForm').onsubmit = async (e) => {
-        e.preventDefault();
+    async function addTeamMember() {
         const name = document.getElementById('teamName').value;
         const role = document.getElementById('teamRole').value;
         const desc = document.getElementById('teamDesc').value;
-        if(!name || !role || !currentTeamImage) { showToast("Fill all fields", true); return; }
-        team.push({ name, role, desc, img: currentTeamImage });
-        if(await saveMasterData()) {
-            renderTeam();
-            e.target.reset();
-            document.getElementById('teamImagePreview').innerHTML = '';
-            currentTeamImage = null;
+        const img = document.getElementById('teamImg').value;
+        if(name && role && img) {
+            team.push({ name, role, desc, img });
+            if(await saveToGitHub()) {
+                renderTeam();
+                document.getElementById('teamName').value = '';
+                document.getElementById('teamRole').value = '';
+                document.getElementById('teamDesc').value = '';
+                document.getElementById('teamImg').value = '';
+            }
         }
-    };
+    }
 
-    // About update
-    document.getElementById('updateAboutBtn').onclick = async () => {
-        aboutContent = document.getElementById('aboutEditor').value;
-        if(await saveMasterData()) showToast("About updated!");
-    };
+    async function updateAbout() {
+        about = document.getElementById('aboutContent').value;
+        await saveToGitHub();
+    }
 
-    // GitHub buttons
-    document.getElementById('saveGitSettings').onclick = () => { saveGitSettings(); };
-    document.getElementById('testConnection').onclick = async () => {
-        saveGitSettings();
-        const success = await loadFromGitHub();
-        if(success) showToast("Connected! Data loaded.");
-        else showToast("Connection failed. Check repo/token.", true);
-    };
-    document.getElementById('syncFromGit').onclick = async () => { await loadFromGitHub(); };
+    async function deleteProject(i) { projects.splice(i,1); await saveToGitHub(); renderProjects(); }
+    async function deleteGallery(i) { gallery.splice(i,1); await saveToGitHub(); renderGallery(); }
+    async function deleteTeam(i) { team.splice(i,1); await saveToGitHub(); renderTeam(); }
 
     // Tab switching
     document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -621,9 +357,7 @@
         });
     });
 
-    loadGitSettings();
-    // Try to load existing data
-    setTimeout(() => { if(gitRepo && gitToken) loadFromGitHub(); }, 500);
+    loadData();
 </script>
 </body>
 </html>
