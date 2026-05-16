@@ -1,6 +1,11 @@
 {
   "projects": [
     {
+      "title": "Culture Bridge – Connecting Cultures Through Friendship",
+      "desc": " ",
+      "image": "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/projects/1778922584645_5.jpeg"
+    },
+    {
       "title": "Journey to Leadership: Lessons from a Leo Educator",
       "desc": " ",
       "image": "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/projects/1778919127112_8.jpeg"
@@ -23,5 +28,5 @@
     }
   ],
   "about": "<p>The <strong>Leo Club of St. Joseph's Collge, Anuradhapura</strong>, chartered on <strong>July 24, 2025</strong>, represents the first chapter in our school's history.</p>",
-  "lastUpdated": "2026-05-16T09:03:58.210Z"
+  "lastUpdated": "2026-05-16T09:09:45.885Z"
 }
