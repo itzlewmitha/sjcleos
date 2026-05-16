@@ -72,6 +72,7 @@
             margin-bottom: 25px;
             border: 1px solid #ffd70033;
             text-align: center;
+            position: relative;
         }
         .header h1 {
             font-family: 'Orbitron', sans-serif;
@@ -82,8 +83,8 @@
         }
         .logout-btn {
             position: absolute;
-            top: 30px;
-            right: 30px;
+            top: 20px;
+            right: 20px;
             background: #ff3366;
             padding: 8px 16px;
             border-radius: 20px;
@@ -217,9 +218,8 @@
     <!-- Admin Content (Hidden until login) -->
     <div id="adminContent" class="admin-content">
         <div class="container">
-            <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
-            
             <div class="header">
+                <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
                 <h1><i class="fas fa-crown"></i> Admin Nexus</h1>
                 <p>Secure CMS - Powered by Vercel + GitHub</p>
                 <div id="connectionStatus"><span class="status-badge status-connected">✅ Connected to Vercel API</span></div>
@@ -307,7 +307,8 @@
         if (sessionStorage.getItem('admin_logged_in') === 'true') {
             document.getElementById('loginPage').style.display = 'none';
             document.getElementById('adminContent').style.display = 'block';
-            initAdmin();
+            // Initialize after DOM is ready
+            setTimeout(() => initAdmin(), 100);
         }
         
         function checkPassword() {
@@ -330,21 +331,28 @@
             location.reload();
         }
         
-        // Admin functionality
-        const API_BASE = '/api';
+        // Global variables
+        let API_BASE = '/api';
         let dataSha = null;
-        let projects = [], gallery = [], team = [], about = "";
+        let projects = [];
+        let gallery = [];
+        let team = [];
+        let about = "";
         
         function showToast(msg, isError = false) {
             const toast = document.getElementById('toast');
+            if (!toast) return;
             toast.innerText = msg;
             toast.style.background = isError ? '#ff3366' : '#00f3ff';
             toast.style.display = 'block';
-            setTimeout(() => toast.style.display = 'none', 3000);
+            setTimeout(() => {
+                if (toast) toast.style.display = 'none';
+            }, 3000);
         }
         
         async function loadData() {
             try {
+                showToast("Loading data from GitHub...");
                 const response = await fetch(`${API_BASE}/github-data`);
                 const data = await response.json();
                 
@@ -355,14 +363,16 @@
                 dataSha = data.sha;
                 
                 renderAll();
-                showToast("Data loaded successfully!");
+                showToast("✅ Data loaded successfully!");
             } catch (error) {
+                console.error("Load error:", error);
                 showToast("Error loading data: " + error.message, true);
             }
         }
         
         async function saveData() {
             try {
+                showToast("Saving to GitHub...");
                 const response = await fetch(`${API_BASE}/github-data`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -378,6 +388,7 @@
                     throw new Error(result.error);
                 }
             } catch (error) {
+                console.error("Save error:", error);
                 showToast("Save failed: " + error.message, true);
                 return false;
             }
@@ -388,6 +399,7 @@
                 const reader = new FileReader();
                 reader.onload = async () => {
                     try {
+                        showToast(`Uploading ${file.name}...`);
                         const response = await fetch(`${API_BASE}/upload-image`, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
@@ -420,7 +432,6 @@
             if (!title || !desc) { showToast("Fill title and description", true); return; }
             if (!file) { showToast("Upload an image", true); return; }
             
-            showToast("Uploading image...");
             try {
                 const imageUrl = await uploadImage(file, 'projects');
                 projects.unshift({ title, desc, image: imageUrl });
@@ -430,7 +441,7 @@
                     document.getElementById('projDesc').value = '';
                     document.getElementById('projImageFile').value = '';
                     document.getElementById('projImagePreview').innerHTML = '';
-                    showToast("Project added successfully!");
+                    showToast("✅ Project added successfully!");
                 }
             } catch (error) {
                 showToast("Upload failed: " + error.message, true);
@@ -441,7 +452,6 @@
             const file = document.getElementById('galleryImageFile').files[0];
             if (!file) { showToast("Select an image", true); return; }
             
-            showToast("Uploading...");
             try {
                 const imageUrl = await uploadImage(file, 'gallery');
                 gallery.push(imageUrl);
@@ -449,7 +459,7 @@
                     renderGallery();
                     document.getElementById('galleryImageFile').value = '';
                     document.getElementById('galleryImagePreview').innerHTML = '';
-                    showToast("Gallery image added!");
+                    showToast("✅ Gallery image added!");
                 }
             } catch (error) {
                 showToast("Upload failed: " + error.message, true);
@@ -465,7 +475,6 @@
             if (!name || !role) { showToast("Fill name and role", true); return; }
             if (!file) { showToast("Upload a photo", true); return; }
             
-            showToast("Uploading...");
             try {
                 const imageUrl = await uploadImage(file, 'team');
                 team.push({ name, role, desc, img: imageUrl });
@@ -476,7 +485,7 @@
                     document.getElementById('teamDesc').value = '';
                     document.getElementById('teamImageFile').value = '';
                     document.getElementById('teamImagePreview').innerHTML = '';
-                    showToast("Team member added!");
+                    showToast("✅ Team member added!");
                 }
             } catch (error) {
                 showToast("Upload failed: " + error.message, true);
@@ -486,17 +495,16 @@
         async function updateAbout() {
             about = document.getElementById('aboutContent').value;
             if (await saveData()) {
-                showToast("About section updated!");
+                showToast("✅ About section updated!");
             }
         }
         
-        // Fixed delete functions - they now properly save after deletion
         async function deleteProject(index) {
             if (confirm('Are you sure you want to delete this project?')) {
                 projects.splice(index, 1);
                 if (await saveData()) {
                     renderProjects();
-                    showToast("Project deleted successfully!");
+                    showToast("✅ Project deleted successfully!");
                 }
             }
         }
@@ -506,7 +514,7 @@
                 gallery.splice(index, 1);
                 if (await saveData()) {
                     renderGallery();
-                    showToast("Gallery image deleted!");
+                    showToast("✅ Gallery image deleted!");
                 }
             }
         }
@@ -516,14 +524,15 @@
                 team.splice(index, 1);
                 if (await saveData()) {
                     renderTeam();
-                    showToast("Team member deleted!");
+                    showToast("✅ Team member deleted!");
                 }
             }
         }
         
         function renderProjects() {
             const container = document.getElementById('projectsList');
-            if (!projects.length) { container.innerHTML = '<div class="loading">No projects yet</div>'; return; }
+            if (!container) return;
+            if (!projects.length) { container.innerHTML = '<div class="loading">No projects yet. Add your first project above!</div>'; return; }
             container.innerHTML = projects.map((p, i) => `
                 <div class="item-card">
                     <img src="${p.image}" onerror="this.src='https://placehold.co/400x200/1a1a2e/ffd700?text=No+Image'">
@@ -538,7 +547,8 @@
         
         function renderGallery() {
             const container = document.getElementById('galleryList');
-            if (!gallery.length) { container.innerHTML = '<div class="loading">No gallery images</div>'; return; }
+            if (!container) return;
+            if (!gallery.length) { container.innerHTML = '<div class="loading">No gallery images. Upload some memories!</div>'; return; }
             container.innerHTML = gallery.map((img, i) => `
                 <div class="item-card">
                     <img src="${img}" onerror="this.src='https://placehold.co/400x400/1a1a2e/ffd700?text=No+Image'">
@@ -551,7 +561,8 @@
         
         function renderTeam() {
             const container = document.getElementById('teamList');
-            if (!team.length) { container.innerHTML = '<div class="loading">No team members</div>'; return; }
+            if (!container) return;
+            if (!team.length) { container.innerHTML = '<div class="loading">No team members. Add your command crew!</div>'; return; }
             container.innerHTML = team.map((m, i) => `
                 <div class="item-card">
                     <img src="${m.img}" onerror="this.src='https://placehold.co/400x400/1a1a2e/ffd700?text=No+Photo'">
@@ -569,7 +580,8 @@
             renderProjects();
             renderGallery();
             renderTeam();
-            document.getElementById('aboutContent').value = about;
+            const aboutContent = document.getElementById('aboutContent');
+            if (aboutContent) aboutContent.value = about;
         }
         
         function escapeHtml(str) {
@@ -592,7 +604,7 @@
                 dropArea.style.borderColor = '#ffd70033';
                 const file = e.dataTransfer.files[0];
                 if (file && file.type.startsWith('image/')) {
-                    fileInput.files = fileInput.files = { 0: file, length: 1 };
+                    fileInput.files = { 0: file, length: 1 };
                     const reader = new FileReader();
                     reader.onload = (ev) => preview.innerHTML = `<img src="${ev.target.result}">`;
                     reader.readAsDataURL(file);
@@ -608,6 +620,9 @@
         }
         
         function initAdmin() {
+            console.log("Initializing admin panel...");
+            
+            // Setup file upload handlers
             setupFileUpload('projectUploadArea', 'projImageFile', 'projImagePreview');
             setupFileUpload('galleryUploadArea', 'galleryImageFile', 'galleryImagePreview');
             setupFileUpload('teamUploadArea', 'teamImageFile', 'teamImagePreview');
@@ -618,7 +633,8 @@
                     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
                     document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active-pane'));
-                    document.getElementById(btn.dataset.tab).classList.add('active-pane');
+                    const tabId = document.getElementById(btn.dataset.tab);
+                    if (tabId) tabId.classList.add('active-pane');
                 });
             });
             
