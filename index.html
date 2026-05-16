@@ -611,12 +611,10 @@
             <h2 class="section-title">OUR MISSION</h2>
             <div class="about-content">
                 <div class="about-text" id="aboutTextContainer">
-                    <p>The <strong>Leo Club of St. Joseph's College, Anuradhapura</strong>, chartered on <strong>July 24, 2025</strong>, represents the first chapter in our school's history.</p>
-                    <p>Beginning with 20 visionary members, our legion has expanded to 35 Alpha Leos—each committed to leadership, innovation, and community service.</p>
-                    <p>Empowered by our sponsoring Lions Club, we equip young Josephians to engineer meaningful change. Guided by our motto <strong>"Unconquered Spirit, Limitless Possibilities"</strong>.</p>
+                    <p>Loading mission data...</p>
                 </div>
                 <div class="about-text">
-                    <img src="assets/images/logo.jpg" alt="Leo Club Logo" style="width:100%; border-radius:20px;" onerror="this.src='https://placehold.co/600x400/1a1a2e/ffd700?text=Leo+Club'">
+                    <img src="https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/images/logo.jpg" alt="Leo Club Logo" style="width:100%; border-radius:20px;" onerror="this.src='https://placehold.co/600x400/1a1a2e/ffd700?text=Leo+Club'">
                 </div>
             </div>
         </div>
@@ -625,21 +623,27 @@
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title">COSMIC OPERATIONS</h2>
-            <div class="project-grid" id="projectsGrid"></div>
+            <div class="project-grid" id="projectsGrid">
+                <div style="text-align:center; padding:40px;">Loading projects...</div>
+            </div>
         </div>
     </section>
 
     <section id="gallery" class="gallery">
         <div class="container">
             <h2 class="section-title">STELLAR ARCHIVES</h2>
-            <div class="gallery-grid" id="galleryGrid"></div>
+            <div class="gallery-grid" id="galleryGrid">
+                <div style="text-align:center; padding:40px;">Loading gallery...</div>
+            </div>
         </div>
     </section>
 
     <section id="team" class="team">
         <div class="container">
             <h2 class="section-title">COMMAND CREW</h2>
-            <div class="team-grid" id="teamGrid"></div>
+            <div class="team-grid" id="teamGrid">
+                <div style="text-align:center; padding:40px;">Loading team...</div>
+            </div>
         </div>
     </section>
 
@@ -674,74 +678,80 @@
     </footer>
 
     <button class="back-to-top" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+    <a href="admin.html" class="admin-link"><i class="fas fa-crown"></i> ADMIN NEXUS</a>
 
     <script>
-        // Add this at the beginning of your index.html script section
-async function loadFromGitHub() {
-    const repo = "itzlewmitha/sjcleos"; // Change this!
-    const url = `https://raw.githubusercontent.com/${repo}/main/data.json`;
-    
-    try {
-        const response = await fetch(url);
-        if(response.ok) {
-            const data = await response.json();
-            projectsData = data.projects || [];
-            galleryData = data.gallery || [];
-            teamData = data.team || [];
-            aboutHTML = data.about || defaultAbout;
-            renderAll();
-        }
-    } catch(e) {
-        console.log("Using default data");
-    }
-}
-        // Data will be loaded from localStorage (set by admin)
+        // Your GitHub repo info
+        const GITHUB_REPO = "itzlewmitha/sjcleos";
+        const GITHUB_TOKEN = "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";
+        
         let projectsData = [];
         let galleryData = [];
-        let aboutHTML = "";
         let teamData = [];
+        let aboutHTML = "";
 
-        // Default team data (paths: assets/team/)
+        // Default fallback data
         const defaultTeam = [
-            { name: "LEO ISIRA DIDULATHA", role: "COMMANDER", img: "assets/team/isira.png", desc: "Guiding our cosmic mission with visionary leadership" },
-            { name: "LEO CHENUTH MANUDITHA", role: "FIRST OFFICER", img: "assets/team/chenuth.png", desc: "Navigating our trajectory with strategic precision" },
-            { name: "LEO PAMIDU AMODAYA", role: "SECOND OFFICER", img: "assets/team/pamidu.png", desc: "Engineering our mission's success through innovation" },
-            { name: "LEO LAKINDU DINETH", role: "OPERATIONS CHIEF", img: "assets/team/lakindu.png", desc: "Coordinating our cosmic operations with flawless execution" },
-            { name: "LEO AKALANKA IDNDUWARA", role: "CHIEF RESOURCE GUARDIAN", img: "assets/team/akalanka.png", desc: "Safeguarding our mission with financial precision" },
-            { name: "LEO LEWMITHA KITHULDENIYA", role: "GALACTIC COMMUNICATIONS DIRECTOR", img: "assets/team/lewmitha.png", desc: "Amplifying our mission across the galaxy" }
+            { name: "LEO ISIRA DIDULATHA", role: "COMMANDER", img: "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/team/isira.png", desc: "Guiding our cosmic mission with visionary leadership" },
+            { name: "LEO CHENUTH MANUDITHA", role: "FIRST OFFICER", img: "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/team/chenuth.png", desc: "Navigating our trajectory with strategic precision" },
+            { name: "LEO PAMIDU AMODAYA", role: "SECOND OFFICER", img: "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/team/pamidu.png", desc: "Engineering our mission's success through innovation" },
+            { name: "LEO LAKINDU DINETH", role: "OPERATIONS CHIEF", img: "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/team/lakindu.png", desc: "Coordinating our cosmic operations with flawless execution" },
+            { name: "LEO AKALANKA IDNDUWARA", role: "CHIEF RESOURCE GUARDIAN", img: "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/team/akalanka.png", desc: "Safeguarding our mission with financial precision" },
+            { name: "LEO LEWMITHA KITHULDENIYA", role: "GALACTIC COMMUNICATIONS DIRECTOR", img: "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/team/lewmitha.png", desc: "Amplifying our mission across the galaxy" }
         ];
 
-        // Default projects (paths: assets/projects/)
         const defaultProjects = [
-            { title: "NEXTGEN CAREERS", desc: "🚀 NEXTGEN CAREERS with Dr. Samantha Pathirathna – Master CVs and Interviews", image: "assets/projects/1.jpeg" },
-            { title: "Click Smart", desc: "🚀 Click Smart with Leo Hansaka Dayakantha – Protecting Children in the Digital Galaxy", image: "assets/projects/2.jpeg" },
-            { title: "CHECKMATE 2.0", desc: "♟️ CHECKMATE 2.0 with FIDE Master Sajith Peris – Think Sharper. Play Smarter.", image: "assets/projects/3.jpeg" }
+            { title: "NEXTGEN CAREERS", desc: "🚀 NEXTGEN CAREERS with Dr. Samantha Pathirathna – Master CVs and Interviews", image: "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/projects/1.jpeg" },
+            { title: "Click Smart", desc: "🚀 Click Smart with Leo Hansaka Dayakantha – Protecting Children in the Digital Galaxy", image: "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/projects/2.jpeg" },
+            { title: "CHECKMATE 2.0", desc: "♟️ CHECKMATE 2.0 with FIDE Master Sajith Peris – Think Sharper. Play Smarter.", image: "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/projects/3.jpeg" }
         ];
 
-        // Default gallery (paths: assets/gallery/)
         const defaultGallery = [
-            "assets/gallery/1.jpeg", "assets/gallery/2.jpeg", "assets/gallery/3.jpeg",
-            "assets/gallery/4.jpeg", "assets/gallery/5.jpeg", "assets/gallery/6.jpeg",
-            "assets/gallery/7.jpeg", "assets/gallery/8.jpeg", "assets/gallery/9.jpeg"
+            "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/gallery/1.jpeg",
+            "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/gallery/2.jpeg",
+            "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/gallery/3.jpeg",
+            "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/gallery/4.jpeg",
+            "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/gallery/5.jpeg",
+            "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/gallery/6.jpeg",
+            "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/gallery/7.jpeg",
+            "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/gallery/8.jpeg",
+            "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/gallery/9.jpeg"
         ];
 
         const defaultAbout = `<p>The <strong>Leo Club of St. Joseph's College, Anuradhapura</strong>, chartered on <strong>July 24, 2025</strong>, represents the first chapter in our school's history and stands as one of the most dynamic forces in Leo District 306 D11, Sri Lanka.</p><p>Beginning with 20 visionary members, our legion has expanded to 35 Alpha Leos—each committed to leadership, innovation, and galactic-scale community service.</p><p>Empowered by our sponsoring Lions Club, we equip young Josephians to engineer meaningful change across our universe. Guided by our motto <strong>"Unconquered Spirit, Limitless Possibilities"</strong>, we navigate a promising trajectory of service, leadership, and inspiration.</p><p>Though our chapter is new, our spirit is ancient and our resolve is absolute. Our journey through the stars of service has just ignited.</p>`;
 
-        function loadData() {
-            const stored = localStorage.getItem('leo_site_data');
-            if(stored) {
-                const data = JSON.parse(stored);
-                projectsData = data.projects || defaultProjects;
-                galleryData = data.gallery || defaultGallery;
-                aboutHTML = data.about || defaultAbout;
-                teamData = data.team || defaultTeam;
-            } else {
-                projectsData = defaultProjects;
-                galleryData = defaultGallery;
-                aboutHTML = defaultAbout;
-                teamData = defaultTeam;
+        // Load data from GitHub
+        async function loadFromGitHub() {
+            const url = `https://raw.githubusercontent.com/${GITHUB_REPO}/main/data.json`;
+            
+            try {
+                console.log("Fetching data from GitHub...");
+                const response = await fetch(url);
+                
+                if(response.ok) {
+                    const data = await response.json();
+                    projectsData = data.projects || defaultProjects;
+                    galleryData = data.gallery || defaultGallery;
+                    teamData = data.team || defaultTeam;
+                    aboutHTML = data.about || defaultAbout;
+                    console.log("Data loaded from GitHub successfully!");
+                } else {
+                    console.log("No data.json found, using default data");
+                    useDefaultData();
+                }
+            } catch(e) {
+                console.log("Error loading from GitHub:", e);
+                useDefaultData();
             }
+            
             renderAll();
+        }
+
+        function useDefaultData() {
+            projectsData = defaultProjects;
+            galleryData = defaultGallery;
+            teamData = defaultTeam;
+            aboutHTML = defaultAbout;
         }
 
         function renderAll() {
@@ -820,7 +830,6 @@ async function loadFromGitHub() {
             });
         }
 
-        // Close mobile menu on link click
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('show');
@@ -843,20 +852,12 @@ async function loadFromGitHub() {
             }
         });
 
-        // Back to top
         document.querySelector('.back-to-top').addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Initialize
-        loadData();
-
-        // Listen for storage changes (if admin updates data)
-        window.addEventListener('storage', (e) => {
-            if(e.key === 'leo_site_data') {
-                loadData();
-            }
-        });
+        // Initialize - load from GitHub
+        loadFromGitHub();
     </script>
 </body>
 </html>
