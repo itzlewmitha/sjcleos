@@ -1,6 +1,5 @@
-// api/github-data.js - Handles all GitHub data operations
+// api/github-data.js
 export default async function handler(req, res) {
-  // Enable CORS
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
@@ -17,35 +16,28 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'GitHub token not configured' });
   }
   
-  // GET - Load data from GitHub
+  // GET - Load data
   if (req.method === 'GET') {
     try {
-      const url = `https://raw.githubusercontent.com/${REPO}/main/data.json`;
-      const response = await fetch(url);
+      const url = `https://api.github.com/repos/${REPO}/contents/data.json`;
+      const response = await fetch(url, {
+        headers: { 'Authorization': `token ${GITHUB_TOKEN}` }
+      });
       
       if (response.status === 404) {
-        // No data file exists yet
         return res.status(200).json({ 
-          projects: [],
-          gallery: [],
-          team: [],
-          about: "<p>The Leo Club of St. Joseph's College, Anuradhapura...</p>",
+          projects: [], gallery: [], team: [], 
+          about: "<p>The Leo Club of St. Joseph's College...</p>",
           exists: false
         });
       }
       
       const data = await response.json();
-      
-      // Also get the SHA for updates
-      const apiUrl = `https://api.github.com/repos/${REPO}/contents/data.json`;
-      const apiResponse = await fetch(apiUrl, {
-        headers: { 'Authorization': `token ${GITHUB_TOKEN}` }
-      });
-      const apiData = await apiResponse.json();
+      const content = JSON.parse(Buffer.from(data.content, 'base64').toString());
       
       return res.status(200).json({
-        ...data,
-        sha: apiData.sha,
+        ...content,
+        sha: data.sha,
         exists: true
       });
     } catch (error) {
@@ -54,16 +46,16 @@ export default async function handler(req, res) {
     }
   }
   
-  // POST - Save data to GitHub
+  // POST - Save data
   if (req.method === 'POST') {
     try {
       const { projects, gallery, team, about, sha } = req.body;
       
       const dataToSave = {
-        projects,
-        gallery,
-        team,
-        about,
+        projects: projects || [],
+        gallery: gallery || [],
+        team: team || [],
+        about: about || "",
         lastUpdated: new Date().toISOString()
       };
       
@@ -86,11 +78,12 @@ export default async function handler(req, res) {
         body: JSON.stringify(body)
       });
       
-      const result = await response.json();
-      
       if (!response.ok) {
-        throw new Error(result.message || 'GitHub API error');
+        const error = await response.json();
+        throw new Error(error.message || 'GitHub API error');
       }
+      
+      const result = await response.json();
       
       return res.status(200).json({ 
         success: true, 
