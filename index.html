@@ -676,6 +676,25 @@
     <button class="back-to-top" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
 
     <script>
+        // Add this at the beginning of your index.html script section
+async function loadFromGitHub() {
+    const repo = "itzlewmitha/sjcleos"; // Change this!
+    const url = `https://raw.githubusercontent.com/${repo}/main/data.json`;
+    
+    try {
+        const response = await fetch(url);
+        if(response.ok) {
+            const data = await response.json();
+            projectsData = data.projects || [];
+            galleryData = data.gallery || [];
+            teamData = data.team || [];
+            aboutHTML = data.about || defaultAbout;
+            renderAll();
+        }
+    } catch(e) {
+        console.log("Using default data");
+    }
+}
         // Data will be loaded from localStorage (set by admin)
         let projectsData = [];
         let galleryData = [];
