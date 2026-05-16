@@ -43,13 +43,11 @@
             background: radial-gradient(ellipse at top, var(--nebula-blue) 0%, var(--cosmic-black) 70%);
             color: var(--starlight);
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
             line-height: 1.6;
             width: 100%;
             position: relative;
         }
 
-        /* Stars Background */
         #stars {
             position: fixed;
             top: 0;
@@ -155,7 +153,6 @@
             width: 100%;
         }
 
-        /* Navigation */
         nav {
             position: fixed;
             left: 0;
@@ -261,7 +258,6 @@
             transition: transform 180ms ease, opacity 180ms ease;
         }
 
-        /* Hero Section */
         .hero {
             height: 100vh;
             min-height: 600px;
@@ -329,7 +325,11 @@
             box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
         }
 
-        /* Glass Cards */
+        .hero-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 243, 255, 0.5);
+        }
+
         .about-content, .project-grid, .team-grid, .gallery-grid {
             display: grid;
             gap: 25px;
@@ -375,6 +375,12 @@
 
         .project-card:hover .project-img img {
             transform: scale(1.05);
+        }
+
+        .project-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--neon-cyan);
         }
 
         .gallery-grid {
@@ -461,6 +467,15 @@
             color: var(--cosmic-black);
         }
 
+        .contact-details a {
+            color: var(--starlight);
+            text-decoration: none;
+        }
+
+        .contact-details a:hover {
+            color: var(--neon-cyan);
+        }
+
         .social-links {
             display: flex;
             gap: 12px;
@@ -479,6 +494,7 @@
             border-radius: 12px;
             color: var(--starlight);
             transition: all var(--ease);
+            text-decoration: none;
         }
 
         .social-links a:hover {
@@ -491,13 +507,7 @@
             background: rgba(10, 10, 15, 0.9);
             padding: 50px 0 25px;
             border-top: 1px solid rgba(255, 215, 0, 0.1);
-        }
-
-        .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: space-between;
+            text-align: center;
         }
 
         .back-to-top {
@@ -515,82 +525,35 @@
             opacity: 0;
             transition: opacity 0.4s ease;
             z-index: 1400;
+            border: none;
+            color: var(--cosmic-black);
+            font-size: 20px;
         }
 
         .back-to-top.visible {
             opacity: 1;
         }
 
-        /* ADMIN PANEL STYLES */
-        .admin-toggle {
+        .admin-link {
             position: fixed;
             bottom: 20px;
             left: 20px;
             z-index: 1500;
-            background: linear-gradient(135deg, var(--starlight-purple), var(--galaxy-violet));
-            border: none;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--celestial-gold);
             border-radius: 40px;
-            padding: 12px 20px;
-            color: white;
-            font-family: 'Orbitron', sans-serif;
-            cursor: pointer;
-            box-shadow: 0 0 20px rgba(0,243,255,0.3);
-        }
-
-        .admin-panel {
-            position: fixed;
-            top: 0;
-            right: -500px;
-            width: 500px;
-            max-width: 90vw;
-            height: 100vh;
-            background: rgba(10, 10, 15, 0.98);
-            backdrop-filter: blur(20px);
-            z-index: 3000;
-            padding: 20px;
-            overflow-y: auto;
-            transition: right 0.4s ease;
-            border-left: 2px solid var(--celestial-gold);
-        }
-
-        .admin-panel.open {
-            right: 0;
-        }
-
-        .admin-panel h3 {
+            padding: 8px 16px;
             color: var(--celestial-gold);
-            margin-bottom: 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 12px;
+            text-decoration: none;
+            transition: all var(--ease);
         }
 
-        .admin-panel input, .admin-panel textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid var(--glass-border);
-            border-radius: 8px;
-            color: white;
-        }
-
-        .admin-panel button {
-            background: linear-gradient(90deg, var(--celestial-gold), var(--neon-cyan));
-            border: none;
-            padding: 12px 20px;
-            border-radius: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .close-admin {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
+        .admin-link:hover {
+            background: var(--celestial-gold);
+            color: var(--cosmic-black);
         }
 
         @media (max-width: 768px) {
@@ -648,10 +611,12 @@
             <h2 class="section-title">OUR MISSION</h2>
             <div class="about-content">
                 <div class="about-text" id="aboutTextContainer">
-                    <!-- Dynamic about content -->
+                    <p>The <strong>Leo Club of St. Joseph's College, Anuradhapura</strong>, chartered on <strong>July 24, 2025</strong>, represents the first chapter in our school's history.</p>
+                    <p>Beginning with 20 visionary members, our legion has expanded to 35 Alpha Leos—each committed to leadership, innovation, and community service.</p>
+                    <p>Empowered by our sponsoring Lions Club, we equip young Josephians to engineer meaningful change. Guided by our motto <strong>"Unconquered Spirit, Limitless Possibilities"</strong>.</p>
                 </div>
                 <div class="about-text">
-                    <img src="https://files.catbox.moe/s2ait5.jpg" alt="Leo Club" style="width:100%; border-radius:20px;">
+                    <img src="assets/images/logo.jpg" alt="Leo Club Logo" style="width:100%; border-radius:20px;" onerror="this.src='https://placehold.co/600x400/1a1a2e/ffd700?text=Leo+Club'">
                 </div>
             </div>
         </div>
@@ -685,15 +650,17 @@
                 <div class="contact-info">
                     <h3>ESTABLISH COMMUNICATION</h3>
                     <ul class="contact-details">
-                        <li><i class="fas fa-user-astronaut"></i> LEO ISIRA DIDULATHA (COMMANDER): <a href="tel:+94728944864">+94 72 894 4864</a></li>
-                        <li><i class="fas fa-envelope"></i> <a href="mailto:leoclubofstjosephscollegeapura@gmail.com">leoclubofstjosephscollegeapura@gmail.com</a></li>
-                        <li><i class="fas fa-map-marker-alt"></i> St. Joseph's College, Anuradhapura, Sri Lanka</li>
+                        <li><i class="fas fa-user-astronaut"></i> <strong>LEO ISIRA DIDULATHA (COMMANDER)</strong><br><a href="tel:+94728944864">+94 72 894 4864</a></li>
+                        <li><i class="fas fa-user-astronaut"></i> <strong>LEO CHENUTH MANUDITHA (FIRST OFFICER)</strong><br><a href="tel:+94727075180">+94 72 707 5180</a></li>
+                        <li><i class="fas fa-envelope"></i> <strong>QUANTUM TRANSMISSION</strong><br><a href="mailto:leoclubofstjosephscollegeapura@gmail.com">leoclubofstjosephscollegeapura@gmail.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <strong>COORDINATES</strong><br>St. Joseph's College, Anuradhapura, Sri Lanka</li>
                     </ul>
                     <div class="social-links">
                         <a href="https://www.facebook.com/share/19ekMcHkyT/"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://www.instagram.com/sjc.leos"><i class="fab fa-instagram"></i></a>
                         <a href="https://whatsapp.com/channel/0029VbB0bJy8KMqnFjxWfX0S"><i class="fab fa-whatsapp"></i></a>
                         <a href="https://youtube.com/@sjcleos"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.linkedin.com/in/leo-club-st-joseph-s-college-anuradhapura-30b246384"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
             </div>
@@ -701,89 +668,70 @@
     </section>
 
     <footer>
-        <div class="container footer-content">
-            <div>© 2025 LEO CLUB OF ST. JOSEPH'S COLLEGE</div>
+        <div class="container">
+            <p>&copy; 2025 LEO CLUB OF ST. JOSEPH'S COLLEGE, ANURADHAPURA. <br>DESIGNED BY PIX STUDIOS SRI LANKA</p>
         </div>
     </footer>
 
     <button class="back-to-top" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
-    <button class="admin-toggle" id="adminToggleBtn"><i class="fas fa-crown"></i> ADMIN NEXUS</button>
-
-    <!-- ADMIN PANEL -->
-    <div class="admin-panel" id="adminPanel">
-        <button class="close-admin" id="closeAdminBtn">&times;</button>
-        <h3><i class="fas fa-database"></i> GITHUB CONTENT MANAGER</h3>
-        <p style="font-size:12px; margin-bottom:15px;">📁 Images path: <strong>images/</strong> , Projects: <strong>projects/</strong> , Gallery: <strong>gallery/</strong> , Team: <strong>team/</strong></p>
-        
-        <h4>➕ ADD NEW PROJECT</h4>
-        <input type="text" id="projTitle" placeholder="Project Title">
-        <textarea id="projDesc" placeholder="Project Description"></textarea>
-        <input type="text" id="projImage" placeholder="Image filename (e.g., projects/project1.jpg)">
-        <button id="addProjectBtn"><i class="fab fa-github"></i> ADD PROJECT (Git Commit)</button>
-
-        <h4 style="margin-top:20px;">🖼️ ADD GALLERY IMAGE</h4>
-        <input type="text" id="galleryImageName" placeholder="Image path (e.g., gallery/event1.jpg)">
-        <button id="addGalleryBtn">ADD TO GALLERY</button>
-
-        <h4 style="margin-top:20px;">✏️ EDIT ABOUT TEXT</h4>
-        <textarea id="adminAboutText" rows="4"></textarea>
-        <button id="updateAboutBtn">UPDATE MISSION</button>
-
-        <h4 style="margin-top:20px;">📦 GIT DEPLOY INSTRUCTIONS</h4>
-        <p style="font-size:12px;">1. Download data.json → 2. Commit to your GitHub repo → 3. Update image files in respective folders.</p>
-        <button id="exportGitBtn"><i class="fab fa-git-alt"></i> EXPORT data.json FOR GIT</button>
-        <button id="importGitBtn">📂 IMPORT FROM data.json</button>
-        <p id="gitStatus" style="color:#00f3ff; margin-top:10px;"></p>
-    </div>
+    <a href="admin.html" class="admin-link"><i class="fas fa-crown"></i> ADMIN NEXUS</a>
 
     <script>
-        // Data structures
+        // Data will be loaded from localStorage (set by admin)
         let projectsData = [];
         let galleryData = [];
-        let aboutHTML = `<p>The <strong>Leo Club of St. Joseph's College, Anuradhapura</strong>, chartered on <strong>July 24, 2025</strong>, represents the first chapter in our school's history.</p><p>Beginning with 20 visionary members, our legion has expanded to 35 Alpha Leos—each committed to leadership, innovation, and community service.</p><p>Empowered by our sponsoring Lions Club, we equip young Josephians to engineer meaningful change. Guided by our motto <strong>"Unconquered Spirit, Limitless Possibilities"</strong>.</p>`;
-        
-        let teamData = [
-            { name: "LEO ISIRA DIDULATHA", role: "COMMANDER", img: "team/isira.png", desc: "Guiding our cosmic mission" },
-            { name: "LEO CHENUTH MANUDITHA", role: "FIRST OFFICER", img: "team/chenuth.png", desc: "Strategic precision" },
-            { name: "LEO PAMIDU AMODAYA", role: "SECOND OFFICER", img: "team/pamidu.png", desc: "Engineering innovation" },
-            { name: "LEO LAKINDU DINETH", role: "OPERATIONS CHIEF", img: "team/lakindu.png", desc: "Flawless execution" }
+        let aboutHTML = "";
+        let teamData = [];
+
+        // Default team data (paths: assets/team/)
+        const defaultTeam = [
+            { name: "LEO ISIRA DIDULATHA", role: "COMMANDER", img: "assets/team/isira.png", desc: "Guiding our cosmic mission with visionary leadership" },
+            { name: "LEO CHENUTH MANUDITHA", role: "FIRST OFFICER", img: "assets/team/chenuth.png", desc: "Navigating our trajectory with strategic precision" },
+            { name: "LEO PAMIDU AMODAYA", role: "SECOND OFFICER", img: "assets/team/pamidu.png", desc: "Engineering our mission's success through innovation" },
+            { name: "LEO LAKINDU DINETH", role: "OPERATIONS CHIEF", img: "assets/team/lakindu.png", desc: "Coordinating our cosmic operations with flawless execution" },
+            { name: "LEO AKALANKA IDNDUWARA", role: "CHIEF RESOURCE GUARDIAN", img: "assets/team/akalanka.png", desc: "Safeguarding our mission with financial precision" },
+            { name: "LEO LEWMITHA KITHULDENIYA", role: "GALACTIC COMMUNICATIONS DIRECTOR", img: "assets/team/lewmitha.png", desc: "Amplifying our mission across the galaxy" }
         ];
 
-        // Load from localStorage or defaults
+        // Default projects (paths: assets/projects/)
+        const defaultProjects = [
+            { title: "NEXTGEN CAREERS", desc: "🚀 NEXTGEN CAREERS with Dr. Samantha Pathirathna – Master CVs and Interviews", image: "assets/projects/1.jpeg" },
+            { title: "Click Smart", desc: "🚀 Click Smart with Leo Hansaka Dayakantha – Protecting Children in the Digital Galaxy", image: "assets/projects/2.jpeg" },
+            { title: "CHECKMATE 2.0", desc: "♟️ CHECKMATE 2.0 with FIDE Master Sajith Peris – Think Sharper. Play Smarter.", image: "assets/projects/3.jpeg" }
+        ];
+
+        // Default gallery (paths: assets/gallery/)
+        const defaultGallery = [
+            "assets/gallery/1.jpeg", "assets/gallery/2.jpeg", "assets/gallery/3.jpeg",
+            "assets/gallery/4.jpeg", "assets/gallery/5.jpeg", "assets/gallery/6.jpeg",
+            "assets/gallery/7.jpeg", "assets/gallery/8.jpeg", "assets/gallery/9.jpeg"
+        ];
+
+        const defaultAbout = `<p>The <strong>Leo Club of St. Joseph's College, Anuradhapura</strong>, chartered on <strong>July 24, 2025</strong>, represents the first chapter in our school's history and stands as one of the most dynamic forces in Leo District 306 D11, Sri Lanka.</p><p>Beginning with 20 visionary members, our legion has expanded to 35 Alpha Leos—each committed to leadership, innovation, and galactic-scale community service.</p><p>Empowered by our sponsoring Lions Club, we equip young Josephians to engineer meaningful change across our universe. Guided by our motto <strong>"Unconquered Spirit, Limitless Possibilities"</strong>, we navigate a promising trajectory of service, leadership, and inspiration.</p><p>Though our chapter is new, our spirit is ancient and our resolve is absolute. Our journey through the stars of service has just ignited.</p>`;
+
         function loadData() {
             const stored = localStorage.getItem('leo_site_data');
             if(stored) {
                 const data = JSON.parse(stored);
-                projectsData = data.projects || [];
-                galleryData = data.gallery || [];
-                aboutHTML = data.about || aboutHTML;
+                projectsData = data.projects || defaultProjects;
+                galleryData = data.gallery || defaultGallery;
+                aboutHTML = data.about || defaultAbout;
+                teamData = data.team || defaultTeam;
             } else {
-                projectsData = [
-                    { title: "NEXTGEN CAREERS", desc: "🚀 NEXTGEN CAREERS with Dr. Samantha Pathirathna – Master CVs and Interviews", image: "projects/1.jpeg" },
-                    { title: "Click Smart", desc: "🚀 Click Smart with Leo Hansaka Dayakantha – Protecting Children", image: "projects/2.jpeg" },
-                    { title: "CHECKMATE 2.0", desc: "♟️ CHECKMATE 2.0 with FIDE Master Sajith Peris", image: "projects/3.jpeg" }
-                ];
-                galleryData = [
-                    "gallery/1.jpeg", "gallery/2.jpeg", "gallery/3.jpeg", "gallery/4.jpeg", "gallery/5.jpeg", "gallery/6.jpeg", "gallery/7.jpeg", "gallery/8.jpeg", "gallery/9.jpeg"
-                ];
+                projectsData = defaultProjects;
+                galleryData = defaultGallery;
+                aboutHTML = defaultAbout;
+                teamData = defaultTeam;
             }
             renderAll();
-        }
-
-        function saveToLocal() {
-            localStorage.setItem('leo_site_data', JSON.stringify({
-                projects: projectsData,
-                gallery: galleryData,
-                about: aboutHTML
-            }));
         }
 
         function renderAll() {
             renderProjects();
             renderGallery();
             renderTeam();
-            document.getElementById('aboutTextContainer').innerHTML = aboutHTML;
-            document.getElementById('adminAboutText').value = aboutHTML;
+            const aboutContainer = document.getElementById('aboutTextContainer');
+            if(aboutContainer) aboutContainer.innerHTML = aboutHTML;
         }
 
         function renderProjects() {
@@ -791,9 +739,9 @@
             if(!grid) return;
             grid.innerHTML = projectsData.map(p => `
                 <div class="project-card">
-                    <div class="project-img"><img src="${p.image}" onerror="this.src='https://placehold.co/400x200/1a1a2e/ffd700?text=No+Image'"></div>
-                    <h3>${p.title}</h3>
-                    <p>${p.desc}</p>
+                    <div class="project-img"><img src="${p.image}" alt="${p.title}" onerror="this.src='https://placehold.co/400x200/1a1a2e/ffd700?text=No+Image'"></div>
+                    <h3>${escapeHtml(p.title)}</h3>
+                    <p>${escapeHtml(p.desc)}</p>
                 </div>
             `).join('');
         }
@@ -802,7 +750,7 @@
             const grid = document.getElementById('galleryGrid');
             if(!grid) return;
             grid.innerHTML = galleryData.map(img => `
-                <div class="gallery-item"><img src="${img}" onerror="this.src='https://placehold.co/400x400/1a1a2e/ffd700?text=Missing'"></div>
+                <div class="gallery-item"><img src="${img}" alt="Gallery image" onerror="this.src='https://placehold.co/400x400/1a1a2e/ffd700?text=Missing'"></div>
             `).join('');
         }
 
@@ -811,154 +759,86 @@
             if(!grid) return;
             grid.innerHTML = teamData.map(m => `
                 <div class="team-member">
-                    <div class="member-img"><img src="${m.img}" onerror="this.src='https://placehold.co/150x150/1a1a2e/ffd700?text=Photo'"></div>
-                    <h3>${m.name}</h3>
-                    <div class="member-role">${m.role}</div>
-                    <p>${m.desc}</p>
+                    <div class="member-img"><img src="${m.img}" alt="${m.name}" onerror="this.src='https://placehold.co/150x150/1a1a2e/ffd700?text=Photo'"></div>
+                    <h3>${escapeHtml(m.name)}</h3>
+                    <div class="member-role">${escapeHtml(m.role)}</div>
+                    <p>${escapeHtml(m.desc)}</p>
                 </div>
             `).join('');
         }
 
-        // Admin functions
-        document.getElementById('addProjectBtn')?.addEventListener('click', () => {
-            const title = document.getElementById('projTitle').value.trim();
-            const desc = document.getElementById('projDesc').value.trim();
-            const image = document.getElementById('projImage').value.trim();
-            if(title && desc && image) {
-                projectsData.push({ title, desc, image });
-                saveToLocal();
-                renderProjects();
-                document.getElementById('projTitle').value = '';
-                document.getElementById('projDesc').value = '';
-                document.getElementById('projImage').value = '';
-                alert('✅ Project added! Remember to upload image to your GitHub /images folder');
-            } else alert('Fill all fields! Image path: images/yourfile.jpg');
-        });
+        function escapeHtml(str) {
+            if(!str) return '';
+            return str.replace(/[&<>]/g, function(m) {
+                if(m === '&') return '&amp;';
+                if(m === '<') return '&lt;';
+                if(m === '>') return '&gt;';
+                return m;
+            });
+        }
 
-        document.getElementById('addGalleryBtn')?.addEventListener('click', () => {
-            const imgPath = document.getElementById('galleryImageName').value.trim();
-            if(imgPath) {
-                galleryData.push(imgPath);
-                saveToLocal();
-                renderGallery();
-                document.getElementById('galleryImageName').value = '';
-                alert('Gallery image added! Place file in gallery/ folder on GitHub');
-            }
-        });
-
-        document.getElementById('updateAboutBtn')?.addEventListener('click', () => {
-            aboutHTML = document.getElementById('adminAboutText').value;
-            saveToLocal();
-            renderAll();
-            alert('About section updated');
-        });
-
-        // EXPORT for Git (JSON + instructions)
-        document.getElementById('exportGitBtn')?.addEventListener('click', () => {
-            const exportObj = {
-                projects: projectsData,
-                gallery: galleryData,
-                about: aboutHTML,
-                team: teamData,
-                instructions: "Place images in respective folders: projects/, gallery/, team/ (relative to root). Update paths if needed."
-            };
-            const dataStr = JSON.stringify(exportObj, null, 2);
-            const blob = new Blob([dataStr], {type: "application/json"});
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = "leo_website_data.json";
-            a.click();
-            URL.revokeObjectURL(url);
-            document.getElementById('gitStatus').innerHTML = "✅ Exported! Commit this JSON and your image files to GitHub repo.";
-        });
-
-        document.getElementById('importGitBtn')?.addEventListener('click', () => {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = 'application/json';
-            input.onchange = e => {
-                const file = e.target.files[0];
-                const reader = new FileReader();
-                reader.onload = ev => {
-                    try {
-                        const imported = JSON.parse(ev.target.result);
-                        if(imported.projects) projectsData = imported.projects;
-                        if(imported.gallery) galleryData = imported.gallery;
-                        if(imported.about) aboutHTML = imported.about;
-                        saveToLocal();
-                        renderAll();
-                        document.getElementById('gitStatus').innerHTML = "✅ Imported! Make sure image files exist in correct folders.";
-                    } catch(err) { alert("Invalid JSON"); }
-                };
-                reader.readAsText(file);
-            };
-            input.click();
-        });
-
-        // UI interactions
-        const adminPanel = document.getElementById('adminPanel');
-        document.getElementById('adminToggleBtn').onclick = () => adminPanel.classList.add('open');
-        document.getElementById('closeAdminBtn').onclick = () => adminPanel.classList.remove('open');
-        
-        // Stars & mobile menu
+        // Stars background
         function createStars() {
-            for(let i=0;i<120;i++) {
-                const s = document.createElement('div');
-                s.classList.add('star');
-                s.style.left = Math.random()*100+'%';
-                s.style.top = Math.random()*100+'%';
-                s.style.width = Math.random()*2+1+'px';
-                s.style.height = s.style.width;
-                s.style.animationDelay = Math.random()*5+'s';
-                document.getElementById('stars').appendChild(s);
+            const starsContainer = document.getElementById('stars');
+            for(let i = 0; i < 150; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = (Math.random() * 2 + 1) + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDelay = Math.random() * 5 + 's';
+                starsContainer.appendChild(star);
             }
         }
         createStars();
-        
+
+        // Mobile menu toggle
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
-        menuToggle?.addEventListener('click', () => navLinks.classList.toggle('show'));
-        window.addEventListener('scroll', () => {
-            document.querySelector('nav').classList.toggle('scrolled', window.scrollY>60);
-            document.querySelector('.back-to-top').classList.toggle('visible', window.scrollY>300);
-        });
-        document.querySelector('.back-to-top')?.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
-
-        loadData();
-    </script>
-
-    <!-- GITHUB SETUP INSTRUCTIONS (displayed in admin) -->
-    <div style="display:none;" id="githubSetupGuide">
-        <div style="position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#0a0a0f; padding:30px; border-radius:20px; z-index:10000;">
-            <h3>📘 GitHub Setup for Image Uploads</h3>
-            <p>1. Create a GitHub repository (e.g., leo-club-site).<br>
-            2. Upload images to folders: <strong>/projects</strong>, <strong>/gallery</strong>, <strong>/team</strong> via GitHub UI or git push.<br>
-            3. The admin panel exports <strong>data.json</strong>. Commit this file to your repo.<br>
-            4. To load images dynamically, ensure image paths match your repo structure (e.g., projects/1.jpeg).<br>
-            5. Use <strong>RAW GitHub URLs</strong> or serve via GitHub Pages.<br>
-            <button onclick="this.parentElement.remove()">Got it!</button></p>
-        </div>
-    </div>
-    <script>
-        // Show guide once if needed
-        if(!localStorage.getItem('git_guide_shown')) {
-            setTimeout(() => {
-                const div = document.createElement('div');
-                div.innerHTML = `<div style="position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#0a0a0f; border:2px solid gold; padding:30px; border-radius:20px; z-index:10001; max-width:400px;">
-                    <h3>📘 GITHUB SETUP GUIDE</h3>
-                    <p><strong>To upload images:</strong><br>
-                    - In your GitHub repo, create folders: <code>projects/</code>, <code>gallery/</code>, <code>team/</code><br>
-                    - Upload .jpg/.png files via "Add file" → "Upload files"<br>
-                    - Use admin panel to add entries with correct paths (e.g., <code>projects/yourimage.jpg</code>)<br>
-                    - Export <code>data.json</code> and commit to repo root.<br>
-                    - Your site will load images directly from GitHub Pages or raw URLs.</p>
-                    <button onclick="this.parentElement.remove()" style="background:gold; border:none; padding:8px 20px; border-radius:30px;">🚀 UNDERSTOOD</button>
-                </div>`;
-                document.body.appendChild(div);
-                localStorage.setItem('git_guide_shown', 'true');
-            }, 500);
+        if(menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('show');
+            });
         }
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('show');
+            });
+        });
+
+        // Scroll effects
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            const backBtn = document.querySelector('.back-to-top');
+            if(window.scrollY > 60) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+            if(window.scrollY > 300) {
+                backBtn.classList.add('visible');
+            } else {
+                backBtn.classList.remove('visible');
+            }
+        });
+
+        // Back to top
+        document.querySelector('.back-to-top').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Initialize
+        loadData();
+
+        // Listen for storage changes (if admin updates data)
+        window.addEventListener('storage', (e) => {
+            if(e.key === 'leo_site_data') {
+                loadData();
+            }
+        });
     </script>
 </body>
 </html>
