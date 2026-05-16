@@ -1,6 +1,11 @@
 {
   "projects": [
     {
+      "title": " WebNova 2026",
+      "desc": " ",
+      "image": "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/projects/1778923024847_3e023089-cf4a-4742-96d2-ef83faddbb94.jfif"
+    },
+    {
       "title": "AI Elevate 2026 – Unlocking the Power of AI for Personal & Professional Growth",
       "desc": " ",
       "image": "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/projects/1778922934807_WhatsApp_Image_2026-05-16_at_10.45.10.jpeg"
@@ -48,5 +53,5 @@
     }
   ],
   "about": "<p>The <strong>Leo Club of St. Joseph's Collge, Anuradhapura</strong>, chartered on <strong>July 24, 2025</strong>, represents the first chapter in our school's history.</p>",
-  "lastUpdated": "2026-05-16T09:15:35.967Z"
+  "lastUpdated": "2026-05-16T09:17:06.086Z"
 }
