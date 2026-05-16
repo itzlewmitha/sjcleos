@@ -1,6 +1,11 @@
 {
   "projects": [
     {
+      "title": "PixelPro 2026 – Design Bold. Create Impact.",
+      "desc": "  ",
+      "image": "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/projects/1778923225015_9a156c74-db27-4235-a359-e9a6dea8489f.jfif"
+    },
+    {
       "title": " CHECKMATE 2.0 CHESS WORKSHOP - PHASE 02",
       "desc": " ",
       "image": "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/projects/1778923150328_202602070731081849465864.jpeg"
@@ -63,5 +68,5 @@
     }
   ],
   "about": "<p>The <strong>Leo Club of St. Joseph's Collge, Anuradhapura</strong>, chartered on <strong>July 24, 2025</strong>, represents the first chapter in our school's history.</p>",
-  "lastUpdated": "2026-05-16T09:19:11.311Z"
+  "lastUpdated": "2026-05-16T09:20:26.031Z"
 }
