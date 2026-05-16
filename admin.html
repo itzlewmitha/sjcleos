@@ -32,28 +32,6 @@
             background-clip: text;
             color: transparent;
         }
-        .token-warning {
-            background: #ff336622;
-            border-left: 4px solid #ff3366;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        .token-input-area {
-            background: #1a1a2e;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        .token-input-area input {
-            background: #0a0a0f;
-            border: 1px solid #ffd70033;
-            color: white;
-            padding: 12px;
-            border-radius: 8px;
-            width: 70%;
-            margin-right: 10px;
-        }
         .status-badge {
             display: inline-block;
             padding: 5px 12px;
@@ -95,10 +73,7 @@
             margin-bottom: 25px;
             border: 1px solid #ffd70033;
         }
-        .card h3 {
-            margin-bottom: 20px;
-            color: #ffd700;
-        }
+        .card h3 { margin-bottom: 20px; color: #ffd700; }
         input, textarea {
             width: 100%;
             padding: 12px;
@@ -107,7 +82,6 @@
             border: 1px solid #ffd70033;
             border-radius: 8px;
             color: white;
-            font-family: 'Inter', sans-serif;
         }
         .file-upload-area {
             border: 2px dashed #ffd70033;
@@ -122,12 +96,7 @@
             border-color: #00f3ff;
             background: rgba(0, 243, 255, 0.1);
         }
-        .image-preview {
-            max-width: 200px;
-            margin-top: 10px;
-            border-radius: 8px;
-            overflow: hidden;
-        }
+        .image-preview { max-width: 200px; margin-top: 10px; border-radius: 8px; overflow: hidden; }
         .image-preview img { width: 100%; height: auto; }
         button {
             background: linear-gradient(90deg, #ffd700, #00f3ff);
@@ -136,7 +105,6 @@
             border-radius: 30px;
             font-weight: bold;
             cursor: pointer;
-            font-family: 'Orbitron', sans-serif;
             transition: transform 0.2s;
         }
         button:hover { transform: translateY(-2px); }
@@ -170,35 +138,16 @@
             border-radius: 8px;
             display: none;
             z-index: 1000;
-            font-weight: bold;
         }
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: #ffd700;
-        }
+        .loading { text-align: center; padding: 40px; color: #ffd700; }
     </style>
 </head>
 <body>
 <div class="container">
     <div class="header">
         <h1><i class="fas fa-crown"></i> Admin Nexus</h1>
-        <p>Manage Leo Club Website Content with Image Upload</p>
-    </div>
-
-    <!-- GitHub Token Setup -->
-    <div class="token-input-area">
-        <h3><i class="fab fa-github"></i> GitHub Connection</h3>
-        <div class="token-warning">
-            ⚠️ <strong>Important:</strong> Enter your GitHub Personal Access Token below. 
-            The token needs <strong>repo</strong> permission. It will be stored in your browser only.
-        </div>
-        <input type="password" id="githubToken" placeholder="Enter your GitHub Personal Access Token" style="width: 100%;">
-        <div style="margin-top: 10px;">
-            <button onclick="saveTokenAndConnect()"><i class="fas fa-link"></i> Connect to GitHub</button>
-            <button onclick="testConnection()" style="margin-left: 10px;"><i class="fas fa-plug"></i> Test Connection</button>
-        </div>
-        <div id="connectionStatus" style="margin-top: 15px;"></div>
+        <p>Secure CMS - Powered by Vercel + GitHub</p>
+        <div id="connectionStatus"><span class="status-badge status-connected">✅ Connected to Vercel API</span></div>
     </div>
 
     <div class="tabs">
@@ -208,83 +157,67 @@
         <button class="tab-btn" data-tab="about">📝 About</button>
     </div>
 
-    <!-- Projects Tab -->
     <div id="projects" class="tab-pane active-pane">
         <div class="card">
-            <h3><i class="fas fa-plus-circle"></i> Add New Project</h3>
+            <h3>Add New Project</h3>
             <input type="text" id="projTitle" placeholder="Project Title">
             <textarea id="projDesc" placeholder="Project Description" rows="3"></textarea>
-            
             <div class="file-upload-area" id="projectUploadArea">
                 <i class="fas fa-cloud-upload-alt" style="font-size: 32px; margin-bottom: 10px; display: block;"></i>
-                Click or drag image here to upload<br>
-                <small>PNG, JPG, JPEG, GIF up to 2MB</small>
+                Click or drag image here<br>
                 <input type="file" id="projImageFile" accept="image/*" style="display: none;">
             </div>
             <div id="projImagePreview" class="image-preview"></div>
-            
-            <button onclick="addProject()"><i class="fas fa-save"></i> Add Project</button>
+            <button onclick="addProject()">Add Project</button>
         </div>
         <div class="card">
-            <h3><i class="fas fa-list"></i> Current Projects</h3>
-            <div id="projectsList" class="items-grid">
-                <div class="loading">Loading projects...</div>
-            </div>
+            <h3>Current Projects</h3>
+            <div id="projectsList" class="items-grid"><div class="loading">Loading...</div></div>
         </div>
     </div>
 
-    <!-- Gallery Tab -->
     <div id="gallery" class="tab-pane">
         <div class="card">
-            <h3><i class="fas fa-plus-circle"></i> Add Gallery Image</h3>
+            <h3>Add Gallery Image</h3>
             <div class="file-upload-area" id="galleryUploadArea">
                 <i class="fas fa-cloud-upload-alt" style="font-size: 32px; margin-bottom: 10px; display: block;"></i>
-                Click or drag image here to upload<br>
-                <small>PNG, JPG, JPEG, GIF up to 2MB</small>
+                Click or drag image here<br>
                 <input type="file" id="galleryImageFile" accept="image/*" style="display: none;">
             </div>
             <div id="galleryImagePreview" class="image-preview"></div>
-            <button onclick="addGalleryImage()"><i class="fas fa-image"></i> Add to Gallery</button>
+            <button onclick="addGalleryImage()">Add to Gallery</button>
         </div>
         <div class="card">
-            <h3><i class="fas fa-th"></i> Gallery</h3>
-            <div id="galleryList" class="items-grid">
-                <div class="loading">Loading gallery...</div>
-            </div>
+            <h3>Gallery</h3>
+            <div id="galleryList" class="items-grid"><div class="loading">Loading...</div></div>
         </div>
     </div>
 
-    <!-- Team Tab -->
     <div id="team" class="tab-pane">
         <div class="card">
-            <h3><i class="fas fa-user-plus"></i> Add Team Member</h3>
+            <h3>Add Team Member</h3>
             <input type="text" id="teamName" placeholder="Full Name">
-            <input type="text" id="teamRole" placeholder="Role (e.g., COMMANDER)">
+            <input type="text" id="teamRole" placeholder="Role">
             <textarea id="teamDesc" placeholder="Description" rows="2"></textarea>
-            
             <div class="file-upload-area" id="teamUploadArea">
                 <i class="fas fa-cloud-upload-alt" style="font-size: 32px; margin-bottom: 10px; display: block;"></i>
                 Click or drag photo here<br>
                 <input type="file" id="teamImageFile" accept="image/*" style="display: none;">
             </div>
             <div id="teamImagePreview" class="image-preview"></div>
-            
-            <button onclick="addTeamMember()"><i class="fas fa-user-plus"></i> Add Member</button>
+            <button onclick="addTeamMember()">Add Member</button>
         </div>
         <div class="card">
-            <h3><i class="fas fa-users"></i> Team Members</h3>
-            <div id="teamList" class="items-grid">
-                <div class="loading">Loading team...</div>
-            </div>
+            <h3>Team Members</h3>
+            <div id="teamList" class="items-grid"><div class="loading">Loading...</div></div>
         </div>
     </div>
 
-    <!-- About Tab -->
     <div id="about" class="tab-pane">
         <div class="card">
-            <h3><i class="fas fa-edit"></i> Edit About Section</h3>
+            <h3>Edit About Section</h3>
             <textarea id="aboutContent" rows="12" placeholder="About content (HTML allowed)"></textarea>
-            <button onclick="updateAbout()"><i class="fas fa-save"></i> Update About</button>
+            <button onclick="updateAbout()">Update About</button>
         </div>
     </div>
 </div>
@@ -292,23 +225,13 @@
 <div id="toast" class="toast"></div>
 
 <script>
-    const REPO = "itzlewmitha/sjcleos";
-    let GITHUB_TOKEN = localStorage.getItem('github_token') || "";
+    const API_BASE = '/api'; // Vercel API routes
     let dataSha = null;
+    let projects = [], gallery = [], team = [], about = "";
     
-    let projects = [];
-    let gallery = [];
-    let team = [];
-    let about = "";
-    
-    let pendingProjectImage = null;
-    let pendingGalleryImage = null;
-    let pendingTeamImage = null;
-
-    // Load saved token
-    if(GITHUB_TOKEN) {
-        document.getElementById('githubToken').value = "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";
-    }
+    let pendingProjectFile = null;
+    let pendingGalleryFile = null;
+    let pendingTeamFile = null;
 
     function showToast(msg, isError = false) {
         const toast = document.getElementById('toast');
@@ -318,294 +241,162 @@
         setTimeout(() => toast.style.display = 'none', 3000);
     }
 
-    function saveTokenAndConnect() {
-        const token = document.getElementById('githubToken').value;
-        if(token && token.length > 10) {
-            GITHUB_TOKEN = token;
-            localStorage.setItem('github_token', token);
-            showToast("Token saved! Testing connection...");
-            testConnection();
-        } else {
-            showToast("Please enter a valid GitHub token", true);
-        }
-    }
-
-    async function testConnection() {
-        if(!GITHUB_TOKEN) {
-            document.getElementById('connectionStatus').innerHTML = '<span class="status-badge status-error">❌ No token configured</span>';
-            return;
-        }
-        
-        const url = `https://api.github.com/repos/${REPO}`;
-        try {
-            const response = await fetch(url, {
-                headers: { 'Authorization': `token ${GITHUB_TOKEN}` }
-            });
-            if(response.ok) {
-                document.getElementById('connectionStatus').innerHTML = '<span class="status-badge status-connected">✅ Connected to GitHub!</span>';
-                showToast("Connected successfully!");
-                await loadData();
-            } else {
-                document.getElementById('connectionStatus').innerHTML = '<span class="status-badge status-error">❌ Connection failed - Check token permissions</span>';
-                showToast("Connection failed. Make sure token has 'repo' scope", true);
-            }
-        } catch(e) {
-            document.getElementById('connectionStatus').innerHTML = '<span class="status-badge status-error">❌ Connection error</span>';
-        }
-    }
-
     async function loadData() {
-        if(!GITHUB_TOKEN) return;
-        
-        const url = `https://api.github.com/repos/${REPO}/contents/data.json`;
         try {
-            const response = await fetch(url, {
-                headers: { 'Authorization': `token ${GITHUB_TOKEN}` }
-            });
+            const response = await fetch(`${API_BASE}/github-data`);
+            const data = await response.json();
             
-            if(response.status === 404) {
-                showToast("No existing data file. Creating new one when you save.", true);
-                projects = [];
-                gallery = [];
-                team = [];
-                about = "<p>The Leo Club of St. Joseph's College, Anuradhapura, chartered on July 24, 2025, represents the first chapter in our school's history.</p>";
-                renderAll();
-                return;
-            }
+            projects = data.projects || [];
+            gallery = data.gallery || [];
+            team = data.team || [];
+            about = data.about || "";
+            dataSha = data.sha;
             
-            if(response.ok) {
-                const data = await response.json();
-                dataSha = data.sha;
-                const content = JSON.parse(atob(data.content));
-                projects = content.projects || [];
-                gallery = content.gallery || [];
-                team = content.team || [];
-                about = content.about || "";
-                renderAll();
-                showToast("Data loaded from GitHub!");
-            } else {
-                showToast("Failed to load data", true);
-            }
-        } catch(e) {
-            console.error("Load error:", e);
-            showToast("Error loading data: " + e.message, true);
+            renderAll();
+            showToast("Data loaded successfully!");
+        } catch (error) {
+            showToast("Error loading data: " + error.message, true);
         }
     }
 
-    async function saveToGitHub() {
-        if(!GITHUB_TOKEN) {
-            showToast("Please configure GitHub token first", true);
-            return false;
-        }
-        
-        const data = { 
-            projects, 
-            gallery, 
-            team, 
-            about,
-            lastUpdated: new Date().toISOString()
-        };
-        const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
-        
-        const url = `https://api.github.com/repos/${REPO}/contents/data.json`;
-        const body = {
-            message: `Update website data - ${new Date().toLocaleString()}`,
-            content: content,
-            branch: "main"
-        };
-        if(dataSha) body.sha = dataSha;
-        
+    async function saveData() {
         try {
-            const response = await fetch(url, {
-                method: 'PUT',
-                headers: {
-                    'Authorization': `token ${GITHUB_TOKEN}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(body)
+            const response = await fetch(`${API_BASE}/github-data`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ projects, gallery, team, about, sha: dataSha })
             });
             
-            if(response.ok) {
-                const result = await response.json();
-                dataSha = result.content.sha;
-                showToast("✅ Saved to GitHub! Site will update shortly.");
+            const result = await response.json();
+            if (result.success) {
+                dataSha = result.sha;
+                showToast("Saved to GitHub successfully!");
                 return true;
             } else {
-                const error = await response.json();
-                showToast("Error: " + (error.message || "Unknown error"), true);
-                return false;
+                throw new Error(result.error);
             }
-        } catch(e) {
-            showToast("Network error: " + e.message, true);
+        } catch (error) {
+            showToast("Save failed: " + error.message, true);
             return false;
         }
     }
 
-    // Upload image to GitHub and return raw URL
-    async function uploadImageToGit(file, folder) {
-        if(!GITHUB_TOKEN) throw new Error("No token");
-        
-        const timestamp = Date.now();
-        const filename = `${timestamp}_${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
-        const path = `assets/${folder}/${filename}`;
-        
-        const reader = new FileReader();
-        const base64 = await new Promise((resolve) => {
-            reader.onload = () => resolve(reader.result.split(',')[1]);
+    async function uploadImage(file, folder) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = async () => {
+                try {
+                    const response = await fetch(`${API_BASE}/upload-image`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            imageData: reader.result,
+                            folder: folder,
+                            filename: file.name
+                        })
+                    });
+                    const result = await response.json();
+                    if (result.success) {
+                        resolve(result.url);
+                    } else {
+                        reject(new Error(result.error));
+                    }
+                } catch (error) {
+                    reject(error);
+                }
+            };
+            reader.onerror = reject;
             reader.readAsDataURL(file);
         });
-        
-        const url = `https://api.github.com/repos/${REPO}/contents/${path}`;
-        const response = await fetch(url, {
-            method: 'PUT',
-            headers: {
-                'Authorization': `token ${GITHUB_TOKEN}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                message: `Upload ${folder} image: ${filename}`,
-                content: base64,
-                branch: "main"
-            })
-        });
-        
-        if(!response.ok) throw new Error("Upload failed");
-        
-        return `https://raw.githubusercontent.com/${REPO}/main/${path}`;
     }
 
-    // Setup file upload handlers
-    function setupFileUpload(dropAreaId, fileInputId, previewId, callback) {
-        const dropArea = document.getElementById(dropAreaId);
-        const fileInput = document.getElementById(fileInputId);
-        const preview = document.getElementById(previewId);
-        
-        dropArea.onclick = () => fileInput.click();
-        dropArea.ondragover = (e) => { e.preventDefault(); dropArea.style.borderColor = '#00f3ff'; };
-        dropArea.ondragleave = () => dropArea.style.borderColor = '#ffd70033';
-        dropArea.ondrop = async (e) => {
-            e.preventDefault();
-            dropArea.style.borderColor = '#ffd70033';
-            const file = e.dataTransfer.files[0];
-            if(file && file.type.startsWith('image/')) {
-                await handleFile(file, preview, callback);
-            }
-        };
-        fileInput.onchange = async (e) => {
-            if(e.target.files[0]) {
-                await handleFile(e.target.files[0], preview, callback);
-            }
-        };
-    }
-    
-    async function handleFile(file, preview, callback) {
-        if(file.size > 2 * 1024 * 1024) {
-            showToast("File too large! Max 2MB", true);
-            return;
-        }
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            preview.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
-        };
-        reader.readAsDataURL(file);
-        if(callback) callback(file);
-    }
-
-    // Add Project
     async function addProject() {
         const title = document.getElementById('projTitle').value;
         const desc = document.getElementById('projDesc').value;
         const file = document.getElementById('projImageFile').files[0];
         
-        if(!title || !desc) { showToast("Please fill title and description", true); return; }
-        if(!file) { showToast("Please upload an image", true); return; }
+        if (!title || !desc) { showToast("Fill title and description", true); return; }
+        if (!file) { showToast("Upload an image", true); return; }
         
         showToast("Uploading image...");
         try {
-            const imageUrl = await uploadImageToGit(file, 'projects');
+            const imageUrl = await uploadImage(file, 'projects');
             projects.unshift({ title, desc, image: imageUrl });
-            if(await saveToGitHub()) {
+            if (await saveData()) {
                 renderProjects();
                 document.getElementById('projTitle').value = '';
                 document.getElementById('projDesc').value = '';
                 document.getElementById('projImageFile').value = '';
                 document.getElementById('projImagePreview').innerHTML = '';
-                showToast("Project added successfully!");
             }
-        } catch(e) {
-            showToast("Upload failed: " + e.message, true);
+        } catch (error) {
+            showToast("Upload failed: " + error.message, true);
         }
     }
 
-    // Add Gallery Image
     async function addGalleryImage() {
         const file = document.getElementById('galleryImageFile').files[0];
-        if(!file) { showToast("Please select an image", true); return; }
+        if (!file) { showToast("Select an image", true); return; }
         
-        showToast("Uploading image...");
+        showToast("Uploading...");
         try {
-            const imageUrl = await uploadImageToGit(file, 'gallery');
+            const imageUrl = await uploadImage(file, 'gallery');
             gallery.push(imageUrl);
-            if(await saveToGitHub()) {
+            if (await saveData()) {
                 renderGallery();
                 document.getElementById('galleryImageFile').value = '';
                 document.getElementById('galleryImagePreview').innerHTML = '';
-                showToast("Gallery image added!");
             }
-        } catch(e) {
-            showToast("Upload failed: " + e.message, true);
+        } catch (error) {
+            showToast("Upload failed: " + error.message, true);
         }
     }
 
-    // Add Team Member
     async function addTeamMember() {
         const name = document.getElementById('teamName').value;
         const role = document.getElementById('teamRole').value;
         const desc = document.getElementById('teamDesc').value;
         const file = document.getElementById('teamImageFile').files[0];
         
-        if(!name || !role) { showToast("Please fill name and role", true); return; }
-        if(!file) { showToast("Please upload a photo", true); return; }
+        if (!name || !role) { showToast("Fill name and role", true); return; }
+        if (!file) { showToast("Upload a photo", true); return; }
         
-        showToast("Uploading photo...");
+        showToast("Uploading...");
         try {
-            const imageUrl = await uploadImageToGit(file, 'team');
+            const imageUrl = await uploadImage(file, 'team');
             team.push({ name, role, desc, img: imageUrl });
-            if(await saveToGitHub()) {
+            if (await saveData()) {
                 renderTeam();
                 document.getElementById('teamName').value = '';
                 document.getElementById('teamRole').value = '';
                 document.getElementById('teamDesc').value = '';
                 document.getElementById('teamImageFile').value = '';
                 document.getElementById('teamImagePreview').innerHTML = '';
-                showToast("Team member added!");
             }
-        } catch(e) {
-            showToast("Upload failed: " + e.message, true);
+        } catch (error) {
+            showToast("Upload failed: " + error.message, true);
         }
     }
 
     async function updateAbout() {
         about = document.getElementById('aboutContent').value;
-        if(await saveToGitHub()) {
-            showToast("About section updated!");
-        }
+        await saveData();
     }
 
-    async function deleteProject(i) { projects.splice(i,1); await saveToGitHub(); renderProjects(); }
-    async function deleteGallery(i) { gallery.splice(i,1); await saveToGitHub(); renderGallery(); }
-    async function deleteTeam(i) { team.splice(i,1); await saveToGitHub(); renderTeam(); }
+    async function deleteProject(i) { projects.splice(i,1); await saveData(); renderProjects(); }
+    async function deleteGallery(i) { gallery.splice(i,1); await saveData(); renderGallery(); }
+    async function deleteTeam(i) { team.splice(i,1); await saveData(); renderTeam(); }
 
     function renderProjects() {
         const container = document.getElementById('projectsList');
-        if(!projects.length) { container.innerHTML = '<div class="loading">No projects yet. Add one above!</div>'; return; }
+        if (!projects.length) { container.innerHTML = '<div class="loading">No projects yet</div>'; return; }
         container.innerHTML = projects.map((p, i) => `
             <div class="item-card">
                 <img src="${p.image}" onerror="this.src='https://placehold.co/400x200/1a1a2e/ffd700?text=No+Image'">
                 <div class="info">
                     <h4>${escapeHtml(p.title)}</h4>
                     <p>${escapeHtml(p.desc)}</p>
-                    <button class="delete-btn" onclick="deleteProject(${i})"><i class="fas fa-trash"></i> Delete</button>
+                    <button class="delete-btn" onclick="deleteProject(${i})">Delete</button>
                 </div>
             </div>
         `).join('');
@@ -613,20 +404,18 @@
 
     function renderGallery() {
         const container = document.getElementById('galleryList');
-        if(!gallery.length) { container.innerHTML = '<div class="loading">No gallery images. Upload some!</div>'; return; }
+        if (!gallery.length) { container.innerHTML = '<div class="loading">No gallery images</div>'; return; }
         container.innerHTML = gallery.map((img, i) => `
             <div class="item-card">
                 <img src="${img}" onerror="this.src='https://placehold.co/400x400/1a1a2e/ffd700?text=No+Image'">
-                <div class="info">
-                    <button class="delete-btn" onclick="deleteGallery(${i})"><i class="fas fa-trash"></i> Delete</button>
-                </div>
+                <div class="info"><button class="delete-btn" onclick="deleteGallery(${i})">Delete</button></div>
             </div>
         `).join('');
     }
 
     function renderTeam() {
         const container = document.getElementById('teamList');
-        if(!team.length) { container.innerHTML = '<div class="loading">No team members. Add your crew!</div>'; return; }
+        if (!team.length) { container.innerHTML = '<div class="loading">No team members</div>'; return; }
         container.innerHTML = team.map((m, i) => `
             <div class="item-card">
                 <img src="${m.img}" onerror="this.src='https://placehold.co/400x400/1a1a2e/ffd700?text=No+Photo'">
@@ -634,7 +423,7 @@
                     <h4>${escapeHtml(m.name)}</h4>
                     <p><strong>${escapeHtml(m.role)}</strong></p>
                     <p>${escapeHtml(m.desc)}</p>
-                    <button class="delete-btn" onclick="deleteTeam(${i})"><i class="fas fa-trash"></i> Delete</button>
+                    <button class="delete-btn" onclick="deleteTeam(${i})">Delete</button>
                 </div>
             </div>
         `).join('');
@@ -648,19 +437,42 @@
     }
 
     function escapeHtml(str) {
-        if(!str) return '';
-        return str.replace(/[&<>]/g, function(m) {
-            if(m === '&') return '&amp;';
-            if(m === '<') return '&lt;';
-            if(m === '>') return '&gt;';
-            return m;
-        });
+        if (!str) return '';
+        return str.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m] || m));
     }
 
-    // Setup file upload areas
-    setupFileUpload('projectUploadArea', 'projImageFile', 'projImagePreview', (file) => {});
-    setupFileUpload('galleryUploadArea', 'galleryImageFile', 'galleryImagePreview', (file) => {});
-    setupFileUpload('teamUploadArea', 'teamImageFile', 'teamImagePreview', (file) => {});
+    // Setup file upload handlers
+    function setupFileUpload(dropAreaId, fileInputId, previewId) {
+        const dropArea = document.getElementById(dropAreaId);
+        const fileInput = document.getElementById(fileInputId);
+        const preview = document.getElementById(previewId);
+        
+        dropArea.onclick = () => fileInput.click();
+        dropArea.ondragover = (e) => { e.preventDefault(); dropArea.style.borderColor = '#00f3ff'; };
+        dropArea.ondragleave = () => dropArea.style.borderColor = '#ffd70033';
+        dropArea.ondrop = (e) => {
+            e.preventDefault();
+            dropArea.style.borderColor = '#ffd70033';
+            const file = e.dataTransfer.files[0];
+            if (file && file.type.startsWith('image/')) {
+                fileInput.files = fileInput.files = { 0: file, length: 1 };
+                const reader = new FileReader();
+                reader.onload = (ev) => preview.innerHTML = `<img src="${ev.target.result}">`;
+                reader.readAsDataURL(file);
+            }
+        };
+        fileInput.onchange = () => {
+            if (fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = (ev) => preview.innerHTML = `<img src="${ev.target.result}">`;
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        };
+    }
+
+    setupFileUpload('projectUploadArea', 'projImageFile', 'projImagePreview');
+    setupFileUpload('galleryUploadArea', 'galleryImageFile', 'galleryImagePreview');
+    setupFileUpload('teamUploadArea', 'teamImageFile', 'teamImagePreview');
 
     // Tab switching
     document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -680,13 +492,9 @@
     window.deleteProject = deleteProject;
     window.deleteGallery = deleteGallery;
     window.deleteTeam = deleteTeam;
-    window.saveTokenAndConnect = saveTokenAndConnect;
-    window.testConnection = testConnection;
 
-    // Try to load token on page load
-    if(GITHUB_TOKEN) {
-        testConnection();
-    }
+    // Load data on startup
+    loadData();
 </script>
 </body>
 </html>
