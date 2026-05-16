@@ -721,8 +721,7 @@
         const defaultAbout = `<p>The <strong>Leo Club of St. Joseph's College, Anuradhapura</strong>, chartered on <strong>July 24, 2025</strong>, represents the first chapter in our school's history and stands as one of the most dynamic forces in Leo District 306 D11, Sri Lanka.</p><p>Beginning with 20 visionary members, our legion has expanded to 35 Alpha Leos—each committed to leadership, innovation, and galactic-scale community service.</p><p>Empowered by our sponsoring Lions Club, we equip young Josephians to engineer meaningful change across our universe. Guided by our motto <strong>"Unconquered Spirit, Limitless Possibilities"</strong>, we navigate a promising trajectory of service, leadership, and inspiration.</p><p>Though our chapter is new, our spirit is ancient and our resolve is absolute. Our journey through the stars of service has just ignited.</p>`;
 
         // Load data from GitHub
-        // Load data from GitHub
-async function loadFromGitHub() {
+       async function loadFromGitHub() {
     const url = 'https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/data.json';
     
     try {
@@ -734,12 +733,10 @@ async function loadFromGitHub() {
             teamData = data.team || defaultTeam;
             aboutHTML = data.about || defaultAbout;
             renderAll();
-            console.log("Data loaded from GitHub!");
         } else {
             useDefaultData();
         }
     } catch(e) {
-        console.log("Using default data");
         useDefaultData();
     }
 }
