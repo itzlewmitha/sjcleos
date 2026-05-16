@@ -1,6 +1,11 @@
 {
   "projects": [
     {
+      "title": "Hunger Zero - No One Sleeps Hungry",
+      "desc": " ",
+      "image": "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/projects/1778923274650_3c70cf56-b2df-46d6-8d8a-f8a17352ead1.jfif"
+    },
+    {
       "title": "PixelPro 2026 – Design Bold. Create Impact.",
       "desc": "  ",
       "image": "https://raw.githubusercontent.com/itzlewmitha/sjcleos/main/assets/projects/1778923225015_9a156c74-db27-4235-a359-e9a6dea8489f.jfif"
@@ -68,5 +73,5 @@
     }
   ],
   "about": "<p>The <strong>Leo Club of St. Joseph's Collge, Anuradhapura</strong>, chartered on <strong>July 24, 2025</strong>, represents the first chapter in our school's history.</p>",
-  "lastUpdated": "2026-05-16T09:20:26.031Z"
+  "lastUpdated": "2026-05-16T09:21:15.677Z"
 }
